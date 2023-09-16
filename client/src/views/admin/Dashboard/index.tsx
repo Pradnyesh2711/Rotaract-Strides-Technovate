@@ -1,4 +1,5 @@
 // src/Dashboard.tsx
+import { useAppSelector } from "app/store";
 import React, { useState } from "react";
 import { BsPencilFill, BsChatLeftDotsFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
@@ -14,11 +15,12 @@ interface EventState {
 
 const Dashboard: React.FC = () => {
   const d = new Date();
+
   const navigate = useNavigate();
   const [selectedMonth, SetSelectedMonth] = useState(
     d.toLocaleString("en-US", { month: "short" })
   );
-  const isPresident = false;
+
   const [eventList, SetEventList] = useState<Array<EventState>>([
     {
       id: "adasasjfjfs",
@@ -116,7 +118,7 @@ const Dashboard: React.FC = () => {
                     {event.eventType} ({event.location})
                   </h4>
                   <div className="text-right">
-                    {isPresident ? (
+                    {localStorage.getItem("type") === "admin" ? (
                       <button
                         className="mx-1 inline rounded-md bg-navy-500 p-2 text-white "
                         onClick={() => {

@@ -32,5 +32,5 @@ const MemberSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-const MemberModel = mongoose.model("Members", MemberSchema);
-export default MemberModel;
+const DemberModel = mongoose.model("Members", MemberSchema);
+export default DemberModel;

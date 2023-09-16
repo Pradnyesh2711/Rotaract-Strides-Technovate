@@ -6,6 +6,10 @@ const EventSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    type: {
+      type: String,
+      default: "Marathon",
+    },
     description: {
       type: String,
       required: true,
@@ -14,7 +18,19 @@ const EventSchema = mongoose.Schema(
       type: Date,
       required: true,
     },
-    location: [
+    city: {
+      type: String,
+      required: true,
+    },
+    contactNo: {
+      type: String,
+      required: true,
+    },
+    contactEmail: {
+      type: String,
+      required: true,
+    },
+    path: [
       {
         latitude: {
           type: Number,
@@ -26,12 +42,12 @@ const EventSchema = mongoose.Schema(
         },
       },
     ],
-    EventImage: [String],
-    type: {
+    club: {
       type: String,
-      enum: ["admin", "member"],
-      default: "member",
+      required: true,
     },
+    coverImage: [String],
+    eventImage: [String],
   },
   { timestamps: true }
 );
