@@ -1,6 +1,6 @@
 // src/CalendarPage.tsx
 import React, { useState } from 'react';
-
+import { FaHandPaper} from "react-icons/fa";
 interface EventState {
     id:string;
     eventType: string;
@@ -13,6 +13,7 @@ interface EventState {
 const CalendarPage: React.FC = () => {
     const d =new Date
     const [selectedMonth, SetSelectedMonth] = useState(d.toLocaleString('en-US', { month: 'short' }))
+    const isPresident = false
     const [eventList, SetEventList]= useState<Array<EventState>>([
         {
             id: "adasasjfjfs",
@@ -31,33 +32,6 @@ const CalendarPage: React.FC = () => {
             description: "Join us for an exhilarating marathon experience that will test your endurance, determination, and love for running! The SPIT Marathon promises an unforgettable journey through scenic routes, camaraderie with fellow runners, and the thrill of crossing the finish line.",
           },
           {
-            id: "adasasjfjfs",
-            eventType: "Marathon",
-            name: "SPIT Marathon",
-            date: new Date(),
-            location: "Andheri, Mumbai",
-            description: "Join us for an exhilarating marathon experience that will test your endurance, determination, and love for running! The SPIT Marathon promises an unforgettable journey through scenic routes, camaraderie with fellow runners, and the thrill of crossing the finish line.",
-          },
-          {
-            id: "adasasjfjfs",
-            eventType: "Marathon",
-            name: "SPIT Marathon",
-            date: new Date(),
-            location: "Andheri, Mumbai",
-            description: "Join us for an exhilarating marathon experience that will test your endurance, determination, and love for running! The SPIT Marathon promises an unforgettable journey through scenic routes, camaraderie with fellow runners, and the thrill of crossing the finish line.",
-          },
-          {
-            id: "adasasjfjfs",
-            eventType: "Marathon",
-            name: "SPIT Marathon",
-            date: new Date(),
-            location: "Andheri, Mumbai",
-            description: "Join us for an exhilarating marathon experience that will test your endurance, determination, and love for running! The SPIT Marathon promises an unforgettable journey through scenic routes, camaraderie with fellow runners, and the thrill of crossing the finish line.",
-          },
-          
-    ])
-    const [myeventList, SetmyEventList]= useState([
-        {
             id: "adasasjfjfs",
             eventType: "Marathon",
             name: "SPIT Marathon",
@@ -113,8 +87,15 @@ const CalendarPage: React.FC = () => {
                 ).map((event) =>
                 (
                     <div className='bg-blue-200 bordersolid my-3 rounded-md py-3 px-6'>
-                    <h4 className="font-bold capitalize text-navy-700 dark:text-white text-lg"> {event.eventType} ({event.location})</h4>
                     <div className='grid grid-cols-2'>
+                    <h4 className="font-bold capitalize text-navy-700 dark:text-white text-lg"> {event.eventType} ({event.location})</h4>
+                      <div className='text-right '>
+                        {isPresident ? null:
+                      <button className='bg-navy-500 p-2 mx-1 rounded-md  text-white ' >Volunteer <FaHandPaper className='inline mb-1'/> 
+                        </button>
+                      }
+                        
+                        </div>
                     <h5 className="font-bold capitalize text-navy-500 dark:text-white text-lg">{event.name}</h5>
                     <h5 className="font-bold capitalize text-navy-500 dark:text-white text-lg">{event.date.toDateString()}</h5>
         
