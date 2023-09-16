@@ -71,6 +71,7 @@ export default function SignIn() {
               firstname: member.firstname,
               lastname: member.lastname,
               type: member.type,
+              club: member.club,
               profilePicture:
                 member?.profilePicture === "" ? "" : member?.profilePicture,
             })

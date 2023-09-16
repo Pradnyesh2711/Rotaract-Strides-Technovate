@@ -3,21 +3,29 @@ import mongoose from "mongoose";
 const EventSchema = mongoose.Schema(
   {
     title: {
-        type: String,
-        required: true,
-      },
+      type: String,
+      required: true,
+    },
     description: {
       type: String,
       required: true,
     },
     date: {
-        type: Date,
-        required: true,
-      },
-    location:{
-        type:location,
-        required:true,
+      type: Date,
+      required: true,
     },
+    location: [
+      {
+        latitude: {
+          type: Number,
+          required: true,
+        },
+        longitude: {
+          type: Number,
+          required: true,
+        },
+      },
+    ],
     EventImage: [String],
     type: {
       type: String,
