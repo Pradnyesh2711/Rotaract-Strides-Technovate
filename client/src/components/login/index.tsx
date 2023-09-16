@@ -1,55 +1,163 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavigateFunction, useNavigate } from "react-router-dom";
+import logo from "assets/img/logo/logo.png";
+import InputField from "components/fields/InputField";
+import Checkbox from "components/checkbox";
+import { ChangeEvent, FormEvent, useState } from "react";
+import axios from "axios";
+import { BACKEND_URL } from "constants/definitions";
+import { useAppDispatch } from "app/store";
+import { setUser } from "app/features/UserSlice";
+import Card from "components/card";
 
 function Login() {
+  const dispatch = useAppDispatch();
+  const navigate: NavigateFunction = useNavigate();
+  const [formData, setFormData] = useState({
+    mobile: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState({
+    mobile: "",
+    password: "",
+  });
+
+  const mobileRegex = /^[0-9]{10}$/;
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+
+  const handleFieldChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    fieldName: string
+  ) => {
+    console.log(e, fieldName);
+    setFormData((prevData) => ({ ...prevData, [fieldName]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const { mobile, password } = formData;
+    const newErrors = {
+      mobile: "",
+      password: "",
+    };
+
+    if (!mobileRegex.test(mobile)) newErrors.mobile = "Invalid Mobile Number";
+
+    if (!passwordRegex.test(password))
+      newErrors.password = "At least 8 characters, 1 uppercase, 1 lowercase";
+
+    setErrors(newErrors);
+
+    if (!newErrors.mobile && !newErrors.password) {
+      const formData = {
+        mobile: mobile,
+        password: password,
+      };
+
+      try {
+        let res = await axios.post(`${BACKEND_URL}/auth/login`, formData);
+
+        if (res.data?.user) {
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("id", res.data.user._id);
+          const user = res.data.user;
+          dispatch(
+            setUser({
+              email: user.email,
+              name: user.name,
+              gender: user.gender,
+              dob: user.dob,
+              city: user.city,
+              cords: user?.coords === "" ? [] : user.cords,
+              mobile: user.mobile,
+              profilePicture:
+                user?.profilePicture === "" ? "" : user.profilePicture,
+              coverPicture: user.coverPicture === "" ? "" : user.coverPicture,
+              about: user?.about === "" ? "" : user.about,
+            })
+          );
+          navigate("/home/user");
+        } else setErrors({ mobile: "", password: "Invalid Credentials" });
+      } catch (ex) {
+        console.log(ex);
+      }
+    }
+  };
+
   return (
-    <div className='bg-gray-200 min-h-screen flex justify-center items-center'>
-      <div className='bg-white p-6 rounded-lg shadow-md w-full max-w-md'>
-        <div className='flex items-center mb-6'>
-          <Link to="/home" className='mr-2'>
-            <img
-              src='https://images.collegedunia.com/public/college_data/images/logos/16336900566237748820344441900178615267475362148777984n.png'
-              alt=''
-              className='w-16 h-auto'
-            />
-          </Link>
-          <div>
-            <span className='text-4xl font-bold'>Rotract Stride</span>
-            <span className='text-base font-bold block'>Rotract Official Marathon Organizer</span>
+    <div className="flex h-[100vh] flex-col items-center justify-start bg-gray-200 pb-3">
+      <div className="mx-auto flex items-center justify-center py-3">
+        <img src={logo} width={65} height={65} alt="Logo" />
+        <span className="ml-2 text-3xl font-bold dark:text-white">
+          {" "}
+          Rotaract Strides
+        </span>
+      </div>
+
+      <Card
+        extra={
+          "items-center flex-col w-[390px]  min-h-[55vh] p-[16px] bg-cover mt-8 pb-8"
+        }
+      >
+        <h2 className="pb-8 pt-3 text-2xl font-bold">Login to your account</h2>
+        <form onSubmit={handleSubmit} autoComplete="off" className="w-95p">
+          {/* Employee ID */}
+          <InputField
+            variant="auth"
+            extra="mb-5"
+            label="Mobile No."
+            placeholder="E.g. 1234567890"
+            id="mobile"
+            type="text"
+            maxLength={10}
+            value={formData.mobile}
+            errorMsg={errors.mobile}
+            onChange={(e) => handleFieldChange(e, "mobile")}
+            state={errors.mobile ? "error" : ""}
+          />
+
+          {/* Password */}
+          <InputField
+            variant="auth"
+            extra="mb-5"
+            label="Password"
+            placeholder="Min. 8 characters"
+            id="password"
+            type="password"
+            minLength={8}
+            errorMsg={errors.password}
+            value={formData.password}
+            onChange={(e) => handleFieldChange(e, "password")}
+            state={errors.password ? "error" : ""}
+          />
+          {/* Checkbox */}
+          <div className="mb-5 flex items-center justify-between px-2">
+            <div className="flex items-center">
+              <Checkbox />
+              <p className="ml-2 text-sm font-medium text-navy-700 dark:text-white">
+                Keep me logged In
+              </p>
+            </div>
+            <a
+              className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
+              href=" "
+            >
+              Forgot Password?
+            </a>
           </div>
-        </div>
-        <h1 className='text-2xl font-semibold mb-4'>Sign In</h1>
-        <form>
-          <div className='mb-4'>
-            <label htmlFor='username' className='text-sm font-semibold'>
-              Username
-            </label>
-            <input
-              type='text'
-              id='username'
-              name='username'
-              className='w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300'
-            />
-          </div>
-          <div className='mb-4'>
-            <label htmlFor='password' className='text-sm font-semibold'>
-              Password
-            </label>
-            <input
-              type='password'
-              id='password'
-              name='password'
-              className='w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300'
-            />
-          </div>
-          <button className='w-full py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600'>
+          <button
+            className="linear mt-4 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200"
+            type="submit"
+          >
             Sign In
           </button>
         </form>
-        <p className='mt-4 text-sm'>
-          By continuing, you agree to Terms And Conditions of Use and Privacy Notice
+        <p className="mt-4 flex justify-center px-2 text-sm">
+          By continuing, you agree to Terms And Conditions of Use and Privacy
+          Notice
         </p>
-      </div>
+      </Card>
     </div>
   );
 }
