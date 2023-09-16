@@ -6,6 +6,10 @@ const EventSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    type: {
+      type: String,
+      default: "Marathon",
+    },
     description: {
       type: String,
       required: true,

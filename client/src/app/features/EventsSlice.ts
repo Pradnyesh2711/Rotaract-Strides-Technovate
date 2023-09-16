@@ -8,12 +8,13 @@ export interface Events {
   id: string;
   title: string;
   description: string;
-  date:Date;
-  path:Location[];
-  coverImage:string[];
-  eventImage:string[];
-  city:string;
-  
+  date: Date;
+  path: Location[];
+  coverImage: string[];
+  eventImage: string[];
+  city: string;
+  contactNo: string;
+  contactEmail: string;
 }
 
 interface EventsState {

@@ -1,11 +1,14 @@
-import { useReducer } from "react";
+import InputField from "components/fields/InputField";
+import { ChangeEvent, useReducer, useState } from "react";
 
 const initialState = {
-  eventType: "Marathon", // Default event type
-  name: "",
+  title: "",
   date: "",
-  location: "",
+  city: "",
   description: "",
+  club: "",
+  contactNo: "",
+  contactEmail: "",
 };
 
 function formReducer(state: any, action: any) {
@@ -23,10 +26,19 @@ function formReducer(state: any, action: any) {
 
 const CreateEvent = () => {
   const [state, dispatch] = useReducer(formReducer, initialState);
+  const [errorField, setErrorField] = useState("");
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     dispatch({ type: "SET_FIELD", field: name, value });
+  };
+
+  const handleFieldChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    field: string
+  ) => {
+    const { value } = e.target;
+    dispatch({ type: "SET_FIELD", field, value });
   };
 
   const handleSubmit = (e: any) => {
@@ -41,61 +53,102 @@ const CreateEvent = () => {
           <h2 className="text-3xl font-bold capitalize text-navy-700 dark:text-white">
             Organize a Marathon
           </h2>
-          <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2"></div>
-            <div className="mb-4 pt-4">
-              <label htmlFor="name" className="block text-gray-600">
-                Event Name:
-              </label>
-              <input
+          <form onSubmit={handleSubmit} autoComplete="off">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              <InputField
+                variant="auth"
+                extra="mb-4 pt-4"
+                label="Event Title"
+                placeholder="Event ABCD"
+                id="title"
                 type="text"
-                id="name"
-                name="name"
-                value={state.name}
-                onChange={handleChange}
-                className="mt-2 w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring"
-                required
+                maxLength={25}
+                value={state.title}
+                errorMsg="Invalid Title"
+                onChange={(e) => handleFieldChange(e, "title")}
+                state={errorField === "title" ? "error" : ""}
               />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="date" className="block text-gray-600">
-                Date:
-              </label>
-              <input
-                type="date"
+              <InputField
+                variant="auth"
+                extra="mb-4 pt-4"
+                label="Date"
+                placeholder="Today's Date"
                 id="date"
-                name="date"
+                type="date"
                 value={state.date}
-                onChange={handleChange}
-                className="mt-2 w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring"
-                required
+                errorMsg="Invalid Date"
+                onChange={(e) => handleFieldChange(e, "date")}
+                state={errorField === "date" ? "error" : ""}
               />
             </div>
-            <div className="mb-4">
-              <label htmlFor="location" className="block text-gray-600">
-                Location:
-              </label>
-              <input
+
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              <div className="mb-2">
+                <label htmlFor="description" className="text-sm text-navy-800">
+                  Description:
+                </label>
+                <textarea
+                  id="description"
+                  name="description"
+                  value={state.description}
+                  onChange={handleChange}
+                  rows={5}
+                  className="mt-2 w-full  rounded-xl border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring"
+                  required
+                />
+              </div>
+              <div className="flex-col">
+                <InputField
+                  variant="auth"
+                  extra="mb-2"
+                  label="City"
+                  placeholder="E.g. Mumbai"
+                  id="city"
+                  type="text"
+                  value={state.city}
+                  errorMsg="Invalid City"
+                  onChange={(e) => handleFieldChange(e, "city")}
+                  state={errorField === "city" ? "error" : ""}
+                />
+                <InputField
+                  variant="auth"
+                  extra="mb-2"
+                  label="Club"
+                  placeholder="E.g. RC-SPIT"
+                  id="club"
+                  type="text"
+                  value={state.club}
+                  errorMsg="Invalid Value"
+                  onChange={(e) => handleFieldChange(e, "club")}
+                  state={errorField === "club" ? "error" : ""}
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              <InputField
+                variant="auth"
+                extra="mb-4"
+                label="Contact No."
+                placeholder="9191919191"
+                id="contactNo"
                 type="text"
-                id="location"
-                name="location"
-                value={state.location}
-                onChange={handleChange}
-                className="mt-2 w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring"
-                required
+                maxLength={10}
+                value={state.contactNo}
+                errorMsg="Invalid Contact No."
+                onChange={(e) => handleFieldChange(e, "contactNo")}
+                state={errorField === "contactNo" ? "error" : ""}
               />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="description" className="block text-gray-600">
-                Description:
-              </label>
-              <textarea
-                id="description"
-                name="description"
-                value={state.description}
-                onChange={handleChange}
-                className="mt-2 w-full rounded-md border px-3 py-2 focus:border-blue-300 focus:outline-none focus:ring"
-                required
+              <InputField
+                variant="auth"
+                extra="mb-4"
+                label="Contact Email"
+                placeholder="example@gmail.com"
+                id="contactEmail"
+                type="text"
+                value={state.contactEmail}
+                errorMsg="Invalid Email-ID"
+                onChange={(e) => handleFieldChange(e, "contactEmail")}
+                state={errorField === "contactEmail" ? "error" : ""}
               />
             </div>
             <div className="text-center">
