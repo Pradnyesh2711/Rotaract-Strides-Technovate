@@ -4,7 +4,7 @@ export interface User {
   email: string;
   name: string;
   gender: string;
-  dob: string;
+  dob: null;
   mobile: string;
   city: string;
   cords: string[];
@@ -24,7 +24,7 @@ const initialState: UserState = {
     email: "",
     name: "",
     gender: "",
-    dob: "",
+    dob: null,
     mobile: "",
     city: "",
     cords: [],
@@ -48,7 +48,7 @@ export const UserSlice = createSlice({
         email: "",
         name: "",
         gender: "",
-        dob: "",
+        dob: null,
         mobile: "",
         city: "",
         cords: [],

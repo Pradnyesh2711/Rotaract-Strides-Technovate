@@ -19,7 +19,7 @@ const UserSchema = mongoose.Schema(
       required: true,
     },
     dob: {
-      type: String,
+      type: Date,
       required: true,
     },
     mobile: {
@@ -30,7 +30,7 @@ const UserSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    pin: {
+    pincode: {
       type: String,
       required: true,
     },
@@ -39,8 +39,8 @@ const UserSchema = mongoose.Schema(
       default: "Pending",
     },
     otp: {
-      type: [String], // Define it as an array of strings
-      default: [],
+      type: String, // Define it as an array of strings
+      default: null,
     },
     cords: {
       type: Object,

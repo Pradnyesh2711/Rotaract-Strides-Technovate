@@ -22,8 +22,14 @@ export default function Auth() {
       <div className="h-full min-h-screen w-full !bg-gray-50 dark:!bg-navy-900">
         <FixedPlugin />
         <main>
-          <div className="mx-auto mt-2 flex items-center justify-center py-3">
-            <img src={logo} width={65} height={65} alt="Logo" />
+          <div className="mx-auto flex items-center justify-center py-3 pt-5">
+            <img
+              src={logo}
+              width={65}
+              height={65}
+              alt="Logo"
+              className="mr-2"
+            />
             <span className="ml-2 text-3xl font-bold dark:text-white">
               {" "}
               Rotaract Strides

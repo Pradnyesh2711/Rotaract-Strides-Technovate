@@ -1,9 +1,8 @@
 import UserModel from "../models/userModel.js";
-import MemberModel from "../models/memberModel.js";
-
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { sendOtp } from "../utils/mobileOtp.js";
+import DemberModel from "../models/demberModel.js";
 
 function generateOTP() {
   // Generate a random 6-digit number
@@ -44,7 +43,7 @@ export const registerUser = async (req, res) => {
       { otp: otp },
       { new: true }
     );
-    res.status(200).json({ finalUser, token });
+    res.status(200).json({ user: finalUser, token });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: error.message });
@@ -80,14 +79,16 @@ export const loginUser = async (req, res) => {
 
 export const checkOtp = async (req, res) => {
   const { mobile, otp } = req.body;
+  console.log(mobile, otp);
   const user = await UserModel.findOne({ mobile: mobile });
-  if (user.otp === otp) {
+  console.log(user);
+  if (user?.otp === otp) {
     const finalUser = await UserModel.findByIdAndUpdate(
       user._id,
       { status: "Verified" },
       { new: true }
     );
-    res.status(200).json({ finalUser });
+    res.status(200).json({ user: finalUser });
   } else {
     res.status(400).json({ message: "Wrong OTP" });
   }
@@ -98,11 +99,11 @@ export const registerMember = async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPass = await bcrypt.hash(req.body.password, salt);
   req.body.password = hashedPass;
-  const newMember = new MemberModel(req.body);
+  const newMember = new DemberModel(req.body);
   const { rotaractID } = req.body;
   try {
     // addition new
-    const oldMember = await MemberModel.findOne({ rotaractID });
+    const oldMember = await DemberModel.findOne({ rotaractID });
 
     if (oldMember)
       return res.status(400).json({ message: "Member already exists" });
@@ -127,7 +128,7 @@ export const loginMember = async (req, res) => {
   const { rotaractID, password } = req.body;
 
   try {
-    const member = await MemberModel.findOne({ rotaractID: rotaractID });
+    const member = await DemberModel.findOne({ rotaractID: rotaractID });
 
     if (member) {
       const validity = await bcrypt.compare(password, member.password);
