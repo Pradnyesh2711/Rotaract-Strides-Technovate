@@ -1,16 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { AdminSlice } from "./features/AdminSlice";
-import { StaffSlice } from "./features/StaffSlice";
+import { MemberSlice } from "./features/MemberSlice";
+import { UserSlice } from "./features/UserSlice";
 import { TaskSlice } from "./features/TaskSlice";
-import { IncidentSlice } from "./features/IncidentSlice";
+import { EventsSlice } from "./features/EventsSlice";
 
 export const store = configureStore({
   reducer: {
-    admin: AdminSlice.reducer,
-    staff: StaffSlice.reducer,
+    member: MemberSlice.reducer,
+    user: UserSlice.reducer,
     tasks: TaskSlice.reducer,
-    incidents: IncidentSlice.reducer,
+    incidents: EventsSlice.reducer,
   },
 });
 
