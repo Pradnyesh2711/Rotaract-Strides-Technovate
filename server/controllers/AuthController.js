@@ -43,7 +43,7 @@ export const registerUser = async (req, res) => {
       { otp: otp },
       { new: true }
     );
-    res.status(200).json({ finalUser, token });
+    res.status(200).json({ user: finalUser, token });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: error.message });
@@ -88,7 +88,7 @@ export const checkOtp = async (req, res) => {
       { status: "Verified" },
       { new: true }
     );
-    res.status(200).json({ finalUser });
+    res.status(200).json({ user: finalUser });
   } else {
     res.status(400).json({ message: "Wrong OTP" });
   }
