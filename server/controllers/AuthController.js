@@ -79,8 +79,10 @@ export const loginUser = async (req, res) => {
 
 export const checkOtp = async (req, res) => {
   const { mobile, otp } = req.body;
+  console.log(mobile,otp);
   const user = await UserModel.findOne({ mobile: mobile });
-  if (user.otp === otp) {
+  console.log(user);
+  if (user?.otp === otp) {
     const finalUser = await UserModel.findByIdAndUpdate(
       user._id,
       { status: "Verified" },

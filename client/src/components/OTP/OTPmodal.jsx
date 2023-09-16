@@ -21,7 +21,6 @@ const OTPModal = ({ isShow, toggleModal, mobile, password }) => {
 
     const formData = {
       mobile: mobile,
-      password: password,
       otp: otp,
     };
 
@@ -36,7 +35,7 @@ const OTPModal = ({ isShow, toggleModal, mobile, password }) => {
         toast.error("Invalid OTP");
       }
     } catch (ex) {
-      console.error(ex);
+      alert(ex);
     }
   };
 
