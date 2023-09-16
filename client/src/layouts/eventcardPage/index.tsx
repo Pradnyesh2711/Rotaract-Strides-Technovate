@@ -1,7 +1,7 @@
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel'
 import Header from 'components/navbar/user_index';
-import Events from 'layouts/Event';
+import EventsC from 'components/eventcard/eventcard';
 
 const EventCard = () => {
 
@@ -15,7 +15,7 @@ const EventCard = () => {
       <button className="absolute top-100 right-0 bg-teal-500 text-white px-4 py-2 rounded-r-lg">
         Search
       </button>
-    <Events />
+    <EventsC/>
     </div>
 
 };
