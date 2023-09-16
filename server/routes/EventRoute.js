@@ -1,5 +1,7 @@
 import express from "express";
-import {CreateCity} from '../controllers/CityController';
-const route=express.route();
+import {getByCity} from '../controllers/CityController';
+const router=express.Router();
 
-router.post('/city',CreateCity)
+router.post('/getByCity',getByCity);
+
+export default router;
