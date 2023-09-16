@@ -7,9 +7,6 @@ import WeeklyIncidents from "./components/WeeklyIncidents";
 import { useAppSelector } from "app/store";
 
 const Dashboard = () => {
-  const staff = useAppSelector((state) => state.staff.data);
-  const incidents = useAppSelector((state) => state.incidents.data);
-
   return (
     <div>
       {/* Card widget */}

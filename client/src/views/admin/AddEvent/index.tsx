@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { resetForm } from '../../app/features/EventSlice';
+import { resetForm } from '../../../app/features/EventSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const initialState = {

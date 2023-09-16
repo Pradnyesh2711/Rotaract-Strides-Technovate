@@ -8,7 +8,7 @@ import { RiMoonFill, RiSunFill } from "react-icons/ri";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import avatar from "assets/img/defaultAvatar.jpg";
 import { useAppDispatch, useAppSelector } from "app/store";
-import { clearAdmin } from "app/features/AdminSlice";
+import { clearMember } from "app/features/MemberSlice";
 
 const Navbar = (props: {
   onOpenSidenav: () => void;
@@ -18,7 +18,7 @@ const Navbar = (props: {
   const dispatch = useAppDispatch();
   const { onOpenSidenav, brandText } = props;
   const [darkmode, setDarkmode] = useState(false);
-  const admin = useAppSelector((state) => state.admin.data);
+  const member = useAppSelector((state) => state.member.data);
 
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
@@ -93,7 +93,7 @@ const Navbar = (props: {
                 </div>
                 <div className="ml-2 flex h-full w-full flex-col justify-center rounded-lg px-1 text-sm">
                   <p className="mb-1 text-left text-base font-bold text-gray-900 dark:text-white">
-                    New Update:  is Here
+                    New Update: is Here
                   </p>
                   <p className="font-base text-left text-xs text-gray-900 dark:text-white">
                     A new update for your downloaded item is available!
@@ -150,7 +150,7 @@ const Navbar = (props: {
               <div className="ml-4 mt-3">
                 <div className="flex items-center gap-2">
                   <p className="text-sm font-bold text-navy-700 dark:text-white">
-                    👋 Hello, {admin.admin_name}
+                    👋 Hello, {member.firstname}
                   </p>{" "}
                 </div>
               </div>
@@ -176,7 +176,7 @@ const Navbar = (props: {
                     localStorage.removeItem("token");
                     localStorage.removeItem("role");
                     localStorage.removeItem("dept");
-                    dispatch(clearAdmin());
+                    dispatch(clearMember());
                   }}
                 >
                   Log Out
