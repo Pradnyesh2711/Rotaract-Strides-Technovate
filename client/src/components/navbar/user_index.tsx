@@ -6,7 +6,7 @@ function Header() {
 <div className="bg-white-600 text-black py-5 px-4 flex justify-between items-center">
   <Link to="/home">
     <img
-      src="logo.png"
+      src="./logo.png"
       alt="Logo"
       className="w-20 h-20 mr-2" // Adjust width, height, and margin as needed
     />
