@@ -1,29 +1,33 @@
-import React, { useReducer } from 'react';
-import { resetForm } from '../../../app/features/EventSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useReducer } from 'react';
+import {useLocation} from 'react-router-dom';
 
-const initialState = {
-  eventType: 'Marathon', // Default event type
-  name: '',
-  date: '',
-  location: '',
-  description: '',
-};
 
-function formReducer(state:any, action:any) {
-  switch (action.type) {
-    case 'SET_FIELD':
-      return { ...state, [action.field]: action.value };
-    case 'SET_EVENT_TYPE':
-      return { ...state, eventType: action.eventType };
-    case 'RESET':
-      return initialState;
-    default:
-      return state;
-  }
+
+
+const EditEvent = () => {
+  const location = useLocation();
+  
+  const initialState = {
+    id: location.state.event.id,
+    eventType: location.state.event.eventType, // Default event type
+    name: location.state.event.name,
+    date: location.state.event.date,
+    location: location.state.event.location,
+    description: location.state.event.description,
+  };
+
+  function formReducer(state:any, action:any) {
+    switch (action.type) {
+      case 'SET_FIELD':
+        return { ...state, [action.field]: action.value };
+      case 'SET_EVENT_TYPE':
+        return { ...state, eventType: action.eventType };
+      case 'RESET':
+        return initialState;
+      default:
+        return state;
+    }
 }
-
-const CreateEvent = () => {
   const [state, dispatch] = useReducer(formReducer, initialState);
 
   const handleChange = (e:any) => {
@@ -95,7 +99,7 @@ const CreateEvent = () => {
             type="submit"
             className="bg-navy-700 text-white py-2 w-70 px-4 rounded-md w-64 hover:bg-navy-900  shadow-2xl transition duration-300 "
           >
-            Add Event
+            Save
           </button></div>
         </form>
       </div>
@@ -105,4 +109,4 @@ const CreateEvent = () => {
   );
 };
 
-export default CreateEvent;
+export default EditEvent;

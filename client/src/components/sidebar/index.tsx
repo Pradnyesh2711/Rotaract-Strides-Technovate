@@ -5,6 +5,7 @@ import Links from "./components/Links";
 
 import routes from "routes";
 import { useAppSelector } from "app/store";
+import logo from '../../assets/img/logo/logo.png';
 
 const Sidebar = (props: {
   open: boolean;
@@ -26,13 +27,14 @@ const Sidebar = (props: {
       </span>
 
       <div
-        className={`mx-[46px] mt-[50px] flex flex-col items-center justify-center`}
+        className={`mx-[46px]  flex flex-col items-center justify-center`}
       >
-        <div className="my-3 h-2.5 font-poppins text-[20px] font-bold uppercase text-navy-700 dark:text-white">
+        <div className=" text-center my-3 h-2.5 font-poppins text-[20px] font-bold uppercase text-navy-700 dark:text-white">
+          <div className="mx-auto"><img src={logo} className="inline-block"/></div>
           Rotaract Strides
         </div>
       </div>
-      <div className="mb-7 mt-2 h-px bg-gray-300 dark:bg-white/30" />
+      <div className="mb-7 mt-[130px] h-px bg-gray-300 dark:bg-white/30" />
       {/* Nav item */}
 
       <ul className="mb-auto pt-1">
