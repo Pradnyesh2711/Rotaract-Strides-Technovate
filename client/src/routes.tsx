@@ -1,7 +1,7 @@
 // Admin Imports
 import Dashboard from "views/admin/Dashboard";
-import AddEvent from "views/AddEvent"
-import ViewEvent from "views/ViewEvent"
+import AddEvent from "views/admin/AddEvent"
+import ViewEvent from "views/admin/ViewEvent"
 
 // Auth Imports
 import SignIn from "views/auth/SignIn";
