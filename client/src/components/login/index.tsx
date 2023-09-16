@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom';
 
 function Login() {
   return (
-    <div className='bg-gray-200 min-h-screen flex justify-center items-center'>
-      <div className='bg-white p-6 rounded-lg shadow-md w-full max-w-md'>
+    <div className='bg-gray-200 min-h-screen flex justify-center items-center relative'>
+      <div className='bg-white p-6 rounded-lg shadow-md w-full max-w-md '>
+      <Link to="/home" className='absolute top-4 left-5'>
+          <div className='w-12 h-12 flex items-center justify-center bg-blue-500 text-white rounded-full'>
+            <span className='text-2xl font-bold '>&lt;</span>
+          </div>
+        </Link>
         <div className='flex items-center mb-6'>
           <Link to="/home" className='mr-2'>
             <img
