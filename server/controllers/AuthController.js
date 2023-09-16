@@ -1,9 +1,8 @@
 import UserModel from "../models/userModel.js";
-import MemberModel from "../models/memberModel.js";
-
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { sendOtp } from "../utils/mobileOtp.js";
+import Member2Model from "../models/member2Modal.js";
 
 function generateOTP() {
   // Generate a random 6-digit number
@@ -102,7 +101,7 @@ export const registerMember = async (req, res) => {
   const { rotaractID } = req.body;
   try {
     // addition new
-    const oldMember = await MemberModel.findOne({ rotaractID });
+    const oldMember = await Member2Model.findOne({ rotaractID });
 
     if (oldMember)
       return res.status(400).json({ message: "Member already exists" });
@@ -127,7 +126,7 @@ export const loginMember = async (req, res) => {
   const { rotaractID, password } = req.body;
 
   try {
-    const member = await MemberModel.findOne({ rotaractID: rotaractID });
+    const member = await Member2Model.findOne({ rotaractID: rotaractID });
 
     if (member) {
       const validity = await bcrypt.compare(password, member.password);
