@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Dropdown from "components/dropdown";
 import { FiAlignJustify } from "react-icons/fi";
 import { Link } from "react-router-dom";
@@ -174,8 +174,8 @@ const Navbar = (props: {
                   className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"
                   onClick={() => {
                     localStorage.removeItem("token");
-                    localStorage.removeItem("role");
-                    localStorage.removeItem("dept");
+                    localStorage.removeItem("type");
+                    localStorage.removeItem("id");
                     dispatch(clearMember());
                   }}
                 >

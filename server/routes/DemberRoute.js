@@ -13,4 +13,5 @@ router.get("/getAdmins", async (req, res) => {
     console.log(error);
   }
 });
+
 export default router;

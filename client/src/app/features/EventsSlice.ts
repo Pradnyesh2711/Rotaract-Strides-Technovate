@@ -9,7 +9,7 @@ export interface Events {
   title: string;
   description: string;
   date: Date;
-  path: Location[];
+  // path: Location[];
   coverImage: string[];
   eventImage: string[];
   city: string;

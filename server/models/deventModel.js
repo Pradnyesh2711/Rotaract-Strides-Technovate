@@ -30,18 +30,18 @@ const EventSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    path: [
-      {
-        latitude: {
-          type: Number,
-          required: true,
-        },
-        longitude: {
-          type: Number,
-          required: true,
-        },
-      },
-    ],
+    // path: [
+    //   {
+    //     latitude: {
+    //       type: Number,
+    //       required: true,
+    //     },
+    //     longitude: {
+    //       type: Number,
+    //       required: true,
+    //     },
+    //   },
+    // ],
     club: {
       type: String,
       required: true,

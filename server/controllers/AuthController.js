@@ -79,7 +79,7 @@ export const loginUser = async (req, res) => {
 
 export const checkOtp = async (req, res) => {
   const { mobile, otp } = req.body;
-  console.log(mobile,otp);
+  console.log(mobile, otp);
   const user = await UserModel.findOne({ mobile: mobile });
   console.log(user);
   if (user?.otp === otp) {
@@ -99,7 +99,7 @@ export const registerMember = async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPass = await bcrypt.hash(req.body.password, salt);
   req.body.password = hashedPass;
-  const newMember = new MemberModel(req.body);
+  const newMember = new DemberModel(req.body);
   const { rotaractID } = req.body;
   try {
     // addition new

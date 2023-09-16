@@ -1,5 +1,7 @@
+import axios from "axios";
 import InputField from "components/fields/InputField";
-import { ChangeEvent, useReducer, useState } from "react";
+import { BACKEND_URL } from "constants/definitions";
+import { ChangeEvent, useEffect, useReducer, useState } from "react";
 
 const initialState = {
   title: "",
@@ -41,9 +43,20 @@ const CreateEvent = () => {
     dispatch({ type: "SET_FIELD", field, value });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
+    const payload = {
+      title: state.title,
+      date: state.date,
+      city: state.city,
+      description: state.description,
+      club: state.club,
+      contactNo: state.contactNo,
+      contactEmail: state.contactEmail,
+    };
     console.log(state);
+    const event = await axios.post(`${BACKEND_URL}/events/addEvent`, payload);
+    console.log(event);
     dispatch({ type: "RESET" });
   };
   return (
@@ -156,7 +169,7 @@ const CreateEvent = () => {
                 type="submit"
                 className="w-70 w-64 rounded-md bg-navy-700 px-4 py-2 text-white shadow-2xl  transition duration-300 hover:bg-navy-900 "
               >
-                Select Route
+                Submit
               </button>
             </div>
           </form>
