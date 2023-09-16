@@ -32,4 +32,4 @@ mongoose
 app.use("/auth", AuthRoute);
 app.use("/user", UserRoute);
 app.use("/member", MemberRoute);
-app.use("/events",EventsRoute);
+app.use("/events", EventRoute);
