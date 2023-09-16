@@ -18,7 +18,7 @@ const EventSchema = mongoose.Schema(
         type:location,
         required:true,
     },
-    EventImage: String,
+    EventImage: [String],
     type: {
       type: String,
       enum: ["admin", "member"],
