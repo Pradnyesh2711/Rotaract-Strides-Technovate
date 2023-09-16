@@ -1,32 +1,59 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from "assets/img/logo/logo.png";
-
+import { BACKEND_URL } from 'constants/definitions';
+import OTPModal from 'components/OTP/OTPmodal';
 function Register() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    gender: 'male',
-    dob: '',
-    city: '',
-    pincode: '',
-    organization: 'individual',
-    mobile: '',
-  });
-
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log(formData);
-  };
+    const [isShow, setIsShow] = useState(true);
+    const [mobile, setMobile] = useState("");
+    const [password, setPassword] = useState("");
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        gender: 'male',
+        dob: '',
+        city: '',
+        pincode: '',
+        mobile: '',
+      });
+      const toggleModal = () => {
+        return setIsShow(!isShow);
+      };
+    
+      const [response, setResponse] = useState(null);
+    
+      const handleChange = (e: { target: { name: any; value: any; }; }) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: value,
+        }));
+      };
+    
+      const handleSubmit = async (e: { preventDefault: () => void; }) => {
+        e.preventDefault();
+        
+        try {
+          const response = await fetch(`${BACKEND_URL}/auth/register`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          });
+    
+          if (response.ok) {
+            const data = await response.json();
+            setResponse(data); // You can handle the response data as needed
+          } else {
+            console.error('Failed to submit form');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      };
+    
 
   return (
     <div className="min-h-screen bg-gray-200">
@@ -82,7 +109,7 @@ function Register() {
                 <label className="block text-sm font-medium text-gray-700">Gender:</label>
                 <select
                   name="gender"
-                  value={formData.gender}
+                  value={"male"}
                   onChange={handleChange}
                   className="w-full px-3 py-2 border rounded-md"
                 >
@@ -156,37 +183,7 @@ function Register() {
                   required
                 />
               </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-800">
-                  Are you an individual or an organization?
-                </label>
-                <div className="flex items-center space-x-4">
-                  <input
-                    type="radio"
-                    id="individual"
-                    name="organization"
-                    value="individual"
-                    checked={formData.organization === 'individual'}
-                    onChange={handleChange}
-                    className="form-radio"
-                  />
-                  <label htmlFor="individual" className="text-sm font-medium text-gray-800">
-                    Individual
-                  </label>
-                  <input
-                    type="radio"
-                    id="organization"
-                    name="organization"
-                    value="organization"
-                    checked={formData.organization === 'organization'}
-                    onChange={handleChange}
-                    className="form-radio"
-                  />
-                  <label htmlFor="organization" className="text-sm font-medium text-gray-800">
-                    Organization
-                  </label>
-                </div>
-              </div>
+              
             </div>
 
             {/* Submit Button */}
@@ -197,6 +194,12 @@ function Register() {
               >
                 Submit
               </button>
+              <OTPModal
+            isShow={isShow}
+            toggleModal={toggleModal}
+            mobile={mobile}
+            password={password}
+      />
             </div>
           </form>
         </div>
