@@ -2,6 +2,7 @@ import React from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import the carousel styles
 import { Carousel } from 'react-responsive-carousel';
 import Header from 'components/navbar/user_index';
+import Footer from 'components/footer/index';
 const AboutUs= () => {
 
     return <div>
@@ -11,12 +12,12 @@ const AboutUs= () => {
       <h1 className="text-3xl font-semibold mb-4">About Us</h1>
       <Carousel showArrows={true} showThumbs={false} className="mb-8">
         <div>
-          <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwzMzc1MTc0fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=500&q=60" alt="Image 1" />
-          <p className="legend">Image 1 Description</p>
+          <img src="https://images.unsplash.com/photo-1508248839954-53aae05bddca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Image 1" />
+      
         </div>
         <div>
-          <img src="/path/to/image2.jpg" alt="Image 2" />
-          <p className="legend">Image 2 Description</p>
+          <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Image 2" />
+          
         </div>
         {/* Add more images and descriptions */}
       </Carousel>
@@ -51,7 +52,7 @@ const AboutUs= () => {
       </div>
     </div>
 
-
+<Footer/>
 
     </div>;
   };
