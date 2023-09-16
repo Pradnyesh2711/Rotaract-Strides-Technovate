@@ -3,11 +3,6 @@ import { FaTasks } from "react-icons/fa";
 import { TbReport } from "react-icons/tb";
 
 import Widget from "components/widget/Widget";
-import TaskTable from "./components/TaskTable";
-import StaffTable from "./components/StaffTable";
-import RecentIncidentsTable from "./components/RecentIncidentsTable";
-import tableDataTask from "constants/tableDataTask";
-import tableDataIncident from "constants/tableDataIncident";
 import WeeklyIncidents from "./components/WeeklyIncidents";
 import { useAppSelector } from "app/store";
 
@@ -41,23 +36,14 @@ const Dashboard = () => {
 
       <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
         <WeeklyIncidents />
-        {incidents?.length > 0 && (
-          <RecentIncidentsTable tableData={incidents} />
-        )}
       </div>
 
       {/* Tables & Charts */}
 
       <div className="col-span-2 mt-5 grid grid-cols-2 gap-5 md:grid-cols-3 ">
         {/* Check Table */}
-        <div className="col-span-2">
-          <TaskTable tableData={tableDataTask} />
-        </div>
-        {staff?.length > 0 && (
-          <div className="grid grid-cols-1 rounded-[20px]">
-            <StaffTable tableData={staff} />
-          </div>
-        )}
+        <div className="col-span-2"></div>
+        <div className="grid grid-cols-1 rounded-[20px]"></div>
       </div>
     </div>
   );

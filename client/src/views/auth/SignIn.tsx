@@ -67,9 +67,9 @@ export default function SignIn() {
         //     localStorage.setItem("dept", res.data.SUCCESS.dept_name);
         //   dispatch(setAdmin(res.data.SUCCESS));
         //   if (res.data.SUCCESS.role === "DEPT_ADMIN") {
-        //     navigate("/dept-admin/dashboard");
+        //     navigate("/admin/dashboard");
         //   } else {
-        //     navigate("/station-admin/dashboard");
+        //     navigate("/admin/dashboard");
         //   }
         // } else setErrors({ eid: "", password: "Invalid Credentials" });
       } catch (ex) {
