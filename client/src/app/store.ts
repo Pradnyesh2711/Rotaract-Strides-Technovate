@@ -4,6 +4,8 @@ import { AdminSlice } from "./features/AdminSlice";
 import { StaffSlice } from "./features/StaffSlice";
 import { TaskSlice } from "./features/TaskSlice";
 import { IncidentSlice } from "./features/IncidentSlice";
+import eventReducer from './features/EventSlice';
+import viewEventReducer from './features/EventSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +13,7 @@ export const store = configureStore({
     staff: StaffSlice.reducer,
     tasks: TaskSlice.reducer,
     incidents: IncidentSlice.reducer,
+    event: eventReducer,
   },
 });
 
