@@ -2,6 +2,7 @@
 import Dashboard from "views/admin/Dashboard";
 import AddEvent from "views/admin/AddEvent"
 import ViewEvent from "views/admin/ViewEvent"
+import EditEvent from "views/admin/EditEvent"
 
 // Auth Imports
 import SignIn from "views/auth/SignIn";
@@ -24,14 +25,14 @@ const routes = [
   {
     name: "Add Event",
     layout: "/admin",
-    path: "addevent",
+    path: "addEvent",
     icon: <MdHome className="h-6 w-6" />,
     component: <AddEvent/>,
   },
   {
     name: "Events Schedule",
     layout: "/admin",
-    path: "viewevents",
+    path: "viewEvents",
     icon: <MdHome className="h-6 w-6" />,
     component: <ViewEvent/>,
   },
@@ -41,6 +42,13 @@ const routes = [
     path: "sign-in",
     icon: <MdLock className="h-6 w-6" />,
     component: <SignIn />,
+  },
+  {
+    name: "Edit Event",
+    layout: "/admin",
+    path: "editEvent",
+    icon: <MdLock className="h-6 w-6" />,
+    component: <EditEvent />,
   },
   
 ];
