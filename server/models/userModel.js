@@ -30,7 +30,7 @@ const UserSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    pin: {
+    pincode: {
       type: String,
       required: true,
     },
