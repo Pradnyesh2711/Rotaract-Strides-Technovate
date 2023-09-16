@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from 'components/navbar/user_index';
 import { Carousel } from 'react-responsive-carousel';
+import Footer from 'components/footer/index';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 function Home() {
@@ -16,7 +17,10 @@ function Home() {
               </div>
               {/* Add more images and descriptions */}
           </Carousel>
-      </div></>
+        
+      </div>
+      <Footer/>
+      </>
   );
 }
 
