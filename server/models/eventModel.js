@@ -18,6 +18,14 @@ const EventSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    contactNo: {
+      type: String,
+      required: true,
+    },
+    contactEmail: {
+      type: String,
+      required: true,
+    },
     path: [
       {
         latitude: {

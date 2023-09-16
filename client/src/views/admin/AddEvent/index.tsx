@@ -37,11 +37,12 @@ const CreateEvent = () => {
   return (
     <>
       <div className="h-max">
-        <div className="mt-6 rounded-xl bg-white px-16 py-6 shadow-2xl">
+        <div className="mt-6 rounded-xl bg-white px-12 py-6 shadow-2xl">
           <h2 className="text-3xl font-bold capitalize text-navy-700 dark:text-white">
             Organize a Marathon
           </h2>
           <form onSubmit={handleSubmit}>
+            <div className="grid grid-cols-1 md:grid-cols-2"></div>
             <div className="mb-4 pt-4">
               <label htmlFor="name" className="block text-gray-600">
                 Event Name:
