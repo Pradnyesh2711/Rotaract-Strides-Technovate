@@ -1,6 +1,6 @@
 // src/Dashboard.tsx
 import React, { useState } from 'react';
-import { BsPencilFill } from "react-icons/bs";
+import { BsPencilFill, BsChatLeftDotsFill } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
 
 interface EventState {
@@ -17,6 +17,7 @@ const Dashboard: React.FC = () => {
     const d =new Date
     const navigate = useNavigate();
     const [selectedMonth, SetSelectedMonth] = useState(d.toLocaleString('en-US', { month: 'short' }))
+    const isPresident = false
     const [eventList, SetEventList]= useState<Array<EventState>>([
         {
             id: "adasasjfjfs",
@@ -92,10 +93,16 @@ const Dashboard: React.FC = () => {
                     <div className='bg-blue-200 bordersolid my-3 rounded-md py-3 px-6'>
                     <div className='grid grid-cols-2'>
                       <h4 className="font-bold capitalize text-navy-700 dark:text-white text-lg"> {event.eventType} ({event.location})</h4>
-                      <div className='text-right'><button className='bg-navy-500 p-2 mx-1 rounded-md inline text-white ' onClick={( )=>
+                      <div className='text-right'>
+                        {isPresident ? <button className='bg-navy-500 p-2 mx-1 rounded-md inline text-white ' onClick={( )=>
                       {
                         navigate('/admin/editevent',{state:{event:event}});
-                      }}><BsPencilFill/></button>
+                      }}><BsPencilFill/>
+                      </button>:
+                      <button className='bg-navy-500 p-2 mx-1 rounded-md inline text-white ' ><BsChatLeftDotsFill/>
+                        </button>
+                      }
+                        
                         </div>
                       
                     
