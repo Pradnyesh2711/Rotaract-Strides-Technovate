@@ -18,13 +18,21 @@ router.post("/addEvent", async (req, res) => {
   }
 });
 
-router.post("/getEvents", async (req, res) => {
-  const { city } = req.body;
+router.post("/getByCity", async (req, res) => {
+  const city = req.body.city;
+
   try {
-    const gcity = await deventModel.find({ city });
-    res.status(200).json(gcity);
+    if(city=="empty"){
+      let events = await deventModel.find();
+    } else {
+      let events = await deventModel.find({city});
+    }
+    res.status(200).json(events);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ message: error.message });
   }
 });
+
+
+
 export default router;
