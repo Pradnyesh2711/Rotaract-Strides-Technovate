@@ -7,17 +7,12 @@ const App = () => {
   return (
     <Routes>
       <Route path="auth/*" element={<AuthLayout />} />
-      <Route path="dept-admin/*" element={<AdminLayout />} />
-      <Route path="station-admin/*" element={<AdminLayout />} />
+      <Route path="admin/*" element={<AdminLayout />} />
       <Route
         path="/"
         element={
           localStorage.getItem("token") ? (
-            localStorage.getItem("role") === "DEPT_ADMIN" ? (
-              <Navigate to="/dept-admin/dashboard" replace />
-            ) : (
-              <Navigate to="/station-admin/dashboard" replace />
-            )
+            <Navigate to="/admin/dashboard" replace />
           ) : (
             <Navigate to="/auth" replace />
           )

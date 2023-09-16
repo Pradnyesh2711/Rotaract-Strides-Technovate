@@ -24,9 +24,9 @@ export default function Auth() {
         <main>
           <div className="mx-auto flex items-center justify-center py-3">
             <img src={logo} width={65} height={65} alt="Logo" />
-            <span className="text-3xl font-bold dark:text-white">
+            <span className="ml-2 text-3xl font-bold dark:text-white">
               {" "}
-              Rail Rakshak
+              Rotaract Strides
             </span>
           </div>
           <Routes>

@@ -3,7 +3,7 @@ export default function Footer() {
   return (
     <div className="z-[5] mx-auto flex w-full max-w-screen-sm flex-col items-center justify-between px-[20px] pb-4 pt-5 dark:!bg-navy-900 lg:mb-6 lg:max-w-[100%] lg:flex-row xl:mb-2 xl:w-[1310px] xl:pb-6">
       <p className="mb-6 text-center text-sm text-gray-600 md:text-base lg:mb-0">
-        ©{1900 + new Date().getFullYear()} Rail Rakshak. All Rights Reserved.
+        ©{1900 + new Date().getFullYear()} Rotaract Strides. All Rights Reserved.
       </p>
       <ul className="flex flex-wrap items-center sm:flex-nowrap">
         <li className="mr-12">
@@ -36,7 +36,7 @@ export default function Footer() {
         <li>
           <a
             target="blank"
-            href="https://blog.rail-rakshak.com/"
+            href="https://blog.rotaract-sides.com/"
             className="text-sm text-gray-600 hover:text-gray-600 dark:text-white dark:hover:text-white md:text-base"
           >
             Blog

@@ -26,13 +26,10 @@ const Sidebar = (props: {
       </span>
 
       <div
-        className={`mx-[56px] mt-[50px] flex flex-col items-center justify-center`}
+        className={`mx-[46px] mt-[50px] flex flex-col items-center justify-center`}
       >
-        <div className="my-2 ml-1 h-2.5 font-poppins text-[26px] font-bold uppercase text-navy-700 dark:text-white">
-          Rail Rakshak
-        </div>
-        <div className="mt-5 text-base text-navy-700 dark:text-white">
-          ({admin.station_name})
+        <div className="my-3 h-2.5 font-poppins text-[20px] font-bold uppercase text-navy-700 dark:text-white">
+          Rotaract Strides
         </div>
       </div>
       <div className="mb-7 mt-2 h-px bg-gray-300 dark:bg-white/30" />

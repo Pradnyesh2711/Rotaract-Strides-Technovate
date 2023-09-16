@@ -11,7 +11,6 @@ import { setAdmin } from "app/features/AdminSlice";
 export default function SignIn() {
   const dispatch = useAppDispatch();
   const navigate: NavigateFunction = useNavigate();
-  const [loggedIn, setLoggedIn] = useState(false);
   const [formData, setFormData] = useState({
     eid: "",
     password: "",
@@ -44,7 +43,7 @@ export default function SignIn() {
       password: "",
     };
 
-    if (!eidRegex.test(eid)) newErrors.eid = "Invalid Employee ID";
+    if (!eidRegex.test(eid)) newErrors.eid = "Invalid Rotaract ID";
 
     if (!passwordRegex.test(password))
       newErrors.password = "At least 8 characters, 1 uppercase, 1 lowercase";
@@ -58,21 +57,21 @@ export default function SignIn() {
       };
 
       try {
-        let res = await axios.post(`${BACKEND_URL}/auth/admin`, formData);
+        if(eid === "ABCD1234" && password === "123456aA" )
+          navigate("/admin/dashboard");
+        // let res = await axios.post(`${BACKEND_URL}/auth/admin`, formData);
 
-        if (res.data?.SUCCESS) {
-          if (loggedIn) {
-            localStorage.setItem("token", res.data.SUCCESS.id);
-            localStorage.setItem("role", res.data.SUCCESS.role);
-            localStorage.setItem("dept", res.data.SUCCESS.dept_name);
-          }
-          dispatch(setAdmin(res.data.SUCCESS));
-          if (res.data.SUCCESS.role === "DEPT_ADMIN") {
-            navigate("/dept-admin/dashboard");
-          } else {
-            navigate("/station-admin/dashboard");
-          }
-        } else setErrors({ eid: "", password: "Invalid Credentials" });
+        // if (res.data?.SUCCESS) {
+        //     localStorage.setItem("token", res.data.SUCCESS.id);
+        //     localStorage.setItem("role", res.data.SUCCESS.role);
+        //     localStorage.setItem("dept", res.data.SUCCESS.dept_name);
+        //   dispatch(setAdmin(res.data.SUCCESS));
+        //   if (res.data.SUCCESS.role === "DEPT_ADMIN") {
+        //     navigate("/dept-admin/dashboard");
+        //   } else {
+        //     navigate("/station-admin/dashboard");
+        //   }
+        // } else setErrors({ eid: "", password: "Invalid Credentials" });
       } catch (ex) {
         console.log(ex);
       }
@@ -92,9 +91,9 @@ export default function SignIn() {
           <InputField
             variant="auth"
             extra="mb-5"
-            label="Admin ID"
+            label="Rotaract ID"
             placeholder="E.g. ABCD1234"
-            id="eid"
+            id="rid"
             type="text"
             maxLength={8}
             value={formData.eid}
@@ -121,7 +120,7 @@ export default function SignIn() {
           {/* Checkbox */}
           <div className="mb-5 flex items-center justify-between px-2">
             <div className="flex items-center">
-              <Checkbox onClick={() => setLoggedIn(!loggedIn)} />
+              <Checkbox />
               <p className="ml-2 text-sm font-medium text-navy-700 dark:text-white">
                 Keep me logged In
               </p>
