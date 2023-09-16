@@ -8,10 +8,10 @@ function Home() {
     <><Header />
     <div className="max-w-screen-lg mx-auto mt-4">
           <Carousel showArrows={true} showThumbs={false} className="max-w-full">
-              <div className="w-full h-80">
+              <div className="w-full h-120">
                   <img src="image1.jpg" alt="Image 1" className="w-full h-full object-cover" />
               </div>
-              <div className="w-full h-80">
+              <div className="w-full h-120">
                   <img src="image2.jpg" alt="Image 2" className="w-full h-full object-cover" />
               </div>
               {/* Add more images and descriptions */}

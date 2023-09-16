@@ -1,9 +1,10 @@
+import Header from 'components/navbar/user_index';
 import React from 'react';
 
 const ContactUs= () => {
 
     return <div>
-  
+  <Header />
     <div className="contact-container bg-opacity-70 bg-cover bg-center bg-white">
       <div className="flex flex-col md:flex-row">
         <div className="md:w-1/2 p-6">

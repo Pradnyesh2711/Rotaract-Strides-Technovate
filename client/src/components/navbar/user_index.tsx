@@ -1,14 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
-    <div className="bg-gray-800 text-white py-2 px-4 flex justify-between items-center">
+    <div className="bg-gray-800 text-white py-5 px-4 flex justify-between items-center">
+        <Link to="/home">
       <div className="text-2xl font-bold">Logo</div>
+      </Link>
       <div className="space-x-4">
         <ul className="flex space-x-4">
-          <li><a href="#about" className="text-white hover:text-orange-500">About Us</a></li>
-          <li><a href="#contact" className="text-white hover:text-orange-500">Contact Us</a></li>
-          <li><a href="#login" className="text-white hover:text-orange-500">Login/Register</a></li>
+        <Link to="/home/about" className="text-2xl font-bold">About Us</Link>
+      <Link to="/home/contact" className="text-2xl font-bold">Contact Us</Link>
+      <Link to="/home/login" className="text-2xl font-bold">Login</Link>
+      <p className="text-2xl font-bold">|</p>
+      <Link to="/home/register" className="text-2xl font-bold">Register</Link>
+
         </ul>
       </div>
     </div>

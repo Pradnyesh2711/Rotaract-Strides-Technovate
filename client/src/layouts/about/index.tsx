@@ -1,10 +1,11 @@
 import React from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import the carousel styles
 import { Carousel } from 'react-responsive-carousel';
+import Header from 'components/navbar/user_index';
 const AboutUs= () => {
 
     return <div>
-    
+    <Header />
 
     <div className="max-w-5xl mx-auto p-6">
       <h1 className="text-3xl font-semibold mb-4">About Us</h1>
