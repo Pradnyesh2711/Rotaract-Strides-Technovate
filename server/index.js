@@ -8,8 +8,7 @@ import mongoose from "mongoose";
 import AuthRoute from "./routes/AuthRoute.js";
 import UserRoute from "./routes/UserRoute.js";
 import DemberRoute from "./routes/DemberRoute.js";
-// import Member2Route from "./routes/Member2Route.js";
-//import EventRoute from "./routes/EventRoute.js";
+import DeventRoute from "./routes/DeventRoute.js";
 
 const app = express();
 
@@ -33,4 +32,4 @@ mongoose
 app.use("/auth", AuthRoute);
 app.use("/user", UserRoute);
 app.use("/dember", DemberRoute);
-//app.use("/events", EventRoute);
+app.use("/events", DeventRoute);
