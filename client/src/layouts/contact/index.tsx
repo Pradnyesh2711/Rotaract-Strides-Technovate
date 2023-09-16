@@ -1,5 +1,6 @@
 import Header from 'components/navbar/user_index';
 import React from 'react';
+import Footer from 'components/footer/index';
 
 const ContactUs= () => {
 
@@ -53,7 +54,7 @@ const ContactUs= () => {
       </div>
     </div>
   
-
+<Footer/>
     </div>;
   };
   
