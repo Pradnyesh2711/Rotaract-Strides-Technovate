@@ -1,4 +1,5 @@
 import express from "express";
+// import eventModel from "../models/eventModel";
 
 const router = express.Router();
 
