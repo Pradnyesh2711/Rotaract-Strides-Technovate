@@ -194,18 +194,19 @@ function Register() {
               >
                 Submit
               </button>
-              <OTPModal
+              
+            </div>
+          </form>
+          <OTPModal
             isShow={isShow}
             toggleModal={toggleModal}
             mobile={mobile}
             password={password}
       />
-            </div>
-          </form>
         </div>
       </div>
     </div>
   );
 }
 
-export default Register;
+export default Register;
