@@ -3,6 +3,7 @@ import Header from 'components/navbar/user_index';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import EventsC from 'components/eventcard/eventcard';
+import Footer from 'components/footer/index';
 
 function Home() {
   return <>
@@ -32,6 +33,7 @@ function Home() {
     <div>
   <EventsC/>
   </div>
+  <Footer />
 
 
   </>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function EventsC() {
   return (
     
-    <div className="flex flex-wrap -mx-4 m-5">
+    <div className="flex flex-wrap justify-between -mx-4 m-5 mt-8 ml-8 mr-10">
       {/* Repeat the following card block to create multiple cards */}
       
      
