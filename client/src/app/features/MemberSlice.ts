@@ -7,6 +7,7 @@ export interface Member {
   firstname: string;
   lastname: string;
   type: string;
+  club: string;
   profilePicture: string;
 }
 
@@ -22,6 +23,7 @@ const initialState: MemberState = {
     firstname: "",
     lastname: "",
     type: "",
+    club: "",
     profilePicture: "",
   },
   loading: false,
@@ -42,6 +44,7 @@ export const MemberSlice = createSlice({
         lastname: "",
         type: "",
         profilePicture: "",
+        club: "",
       };
     },
   },
