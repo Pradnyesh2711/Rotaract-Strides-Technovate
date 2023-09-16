@@ -26,7 +26,14 @@ function Home() {
     {/* Add more images and descriptions */}
   </Carousel>
   </div>
+  <div>
+    <h1 className="text-3xl font-semibold text-teal-500 mb-8">Events</h1>
+    </div>
+    <div>
   <EventsC/>
+  </div>
+
+
   </>
 
 
