@@ -6,23 +6,23 @@ import axios from "axios";
 import { BACKEND_URL } from "constants/definitions";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "app/store";
-import { setAdmin } from "app/features/AdminSlice";
+import { setMember } from "app/features/MemberSlice";
 
 export default function SignIn() {
   const dispatch = useAppDispatch();
   const navigate: NavigateFunction = useNavigate();
   const [formData, setFormData] = useState({
-    eid: "",
+    rotaractID: "",
     password: "",
     showPassword: false,
   });
 
   const [errors, setErrors] = useState({
-    eid: "",
+    rotaractID: "",
     password: "",
   });
 
-  const eidRegex = /^[A-Z0-9]{8}$/;
+  const rotaractIDRegex = /^[A-Z0-9]{8}$/;
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
   const handleFieldChange = (
@@ -30,48 +30,53 @@ export default function SignIn() {
     fieldName: string
   ) => {
     const { value } = e.target;
-    const newValue = fieldName === "eid" ? value.toUpperCase() : value;
+    const newValue = fieldName === "rotaractID" ? value.toUpperCase() : value;
     setFormData((prevData) => ({ ...prevData, [fieldName]: newValue }));
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { eid, password } = formData;
+    const { rotaractID, password } = formData;
     const newErrors = {
-      eid: "",
+      rotaractID: "",
       password: "",
     };
 
-    if (!eidRegex.test(eid)) newErrors.eid = "Invalid Rotaract ID";
+    if (!rotaractIDRegex.test(rotaractID))
+      newErrors.rotaractID = "Invalid Rotaract ID";
 
     if (!passwordRegex.test(password))
       newErrors.password = "At least 8 characters, 1 uppercase, 1 lowercase";
 
     setErrors(newErrors);
 
-    if (!newErrors.eid && !newErrors.password) {
+    if (!newErrors.rotaractID && !newErrors.password) {
       const formData = {
-        id: eid,
+        rotaractID: rotaractID,
         password: password,
       };
 
       try {
-        if(eid === "ABCD1234" && password === "123456aA" )
-          navigate("/admin/dashboard");
-        // let res = await axios.post(`${BACKEND_URL}/auth/admin`, formData);
+        let res = await axios.post(`${BACKEND_URL}/auth/loginMember`, formData);
 
-        // if (res.data?.SUCCESS) {
-        //     localStorage.setItem("token", res.data.SUCCESS.id);
-        //     localStorage.setItem("role", res.data.SUCCESS.role);
-        //     localStorage.setItem("dept", res.data.SUCCESS.dept_name);
-        //   dispatch(setAdmin(res.data.SUCCESS));
-        //   if (res.data.SUCCESS.role === "DEPT_ADMIN") {
-        //     navigate("/admin/dashboard");
-        //   } else {
-        //     navigate("/admin/dashboard");
-        //   }
-        // } else setErrors({ eid: "", password: "Invalid Credentials" });
+        if (res.data?.member) {
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("type", res.data.member.type);
+          localStorage.setItem("id", res.data.member._id);
+          const member = res.data.member;
+          dispatch(
+            setMember({
+              rotaractID: member.rotaractID,
+              firstname: member.firstname,
+              lastname: member.lastname,
+              type: member.type,
+              profilePicture:
+                member?.profilePicture === "" ? "" : member?.profilePicture,
+            })
+          );
+          navigate("/admin/dashboard");
+        } else setErrors({ rotaractID: "", password: "Invalid Credentials" });
       } catch (ex) {
         console.log(ex);
       }
@@ -96,10 +101,10 @@ export default function SignIn() {
             id="rid"
             type="text"
             maxLength={8}
-            value={formData.eid}
-            errorMsg={errors.eid}
-            onChange={(e) => handleFieldChange(e, "eid")}
-            state={errors.eid ? "error" : ""}
+            value={formData.rotaractID}
+            errorMsg={errors.rotaractID}
+            onChange={(e) => handleFieldChange(e, "rotaractID")}
+            state={errors.rotaractID ? "error" : ""}
           />
 
           {/* Password */}

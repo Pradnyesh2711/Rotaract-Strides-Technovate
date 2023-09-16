@@ -4,13 +4,7 @@ import Navbar from "components/navbar";
 import Sidebar from "components/sidebar";
 import Footer from "components/footer/Footer";
 import routes from "routes";
-import { setAdmin } from "app/features/AdminSlice";
 import { useAppDispatch, useAppSelector } from "app/store";
-import { getAdminByID } from "api/Admin";
-import { getStaffByDept } from "api/Staff";
-import { setStaff } from "app/features/StaffSlice";
-import { getIncidents } from "api/Incidents";
-import { setIncidents } from "app/features/IncidentSlice";
 
 export default function Admin(props: { [x: string]: any }) {
   const { ...rest } = props;
@@ -18,7 +12,7 @@ export default function Admin(props: { [x: string]: any }) {
   const dispatch = useAppDispatch();
   const [open, setOpen] = useState(true);
   const [currentRoute, setCurrentRoute] = useState("Dashboard");
-  const admin = useAppSelector((state) => state.admin.data);
+  const member = useAppSelector((state) => state.member.data);
 
   // const fetchData = async () => {
   //   if (localStorage.getItem("token")) {
