@@ -1,4 +1,4 @@
-import Events from 'layouts/Event'
+import EventsC from 'components/eventcard/eventcard';
 import React from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
 import PaymentConfirmation from 'components/PaymentConformation';
@@ -15,7 +15,7 @@ export default function Checkout() {
     {/* Event Card (Left) */}
     <div className="w-1/2 p-4">
       <div className="bg-blue-200 p-4 rounded-lg">
-        <Events />
+        <EventsC />
       </div>
     </div>
 

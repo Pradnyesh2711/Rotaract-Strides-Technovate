@@ -10,7 +10,7 @@ export const store = configureStore({
     member: MemberSlice.reducer,
     user: UserSlice.reducer,
     tasks: TaskSlice.reducer,
-    incidents: EventsSlice.reducer,
+    events: EventsSlice.reducer,
   },
 });
 

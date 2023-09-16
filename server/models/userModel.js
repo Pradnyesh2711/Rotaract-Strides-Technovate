@@ -39,8 +39,8 @@ const UserSchema = mongoose.Schema(
       default: "Pending",
     },
     otp: {
-      type: String,
-      default: null,
+      type: [String], // Define it as an array of strings
+      default: [],
     },
     cords: {
       type: Object,
