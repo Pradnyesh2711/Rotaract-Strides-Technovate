@@ -3,10 +3,13 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import AdminLayout from "layouts/admin";
 import AuthLayout from "layouts/auth";
 import HomeLayout from "layouts/home";
+import AboutUs from "layouts/about";
 const App = () => {
   return (
     <Routes>
-      <Route path="home/*" element={<HomeLayout />} />
+<Route path="home/about" element={<AboutUs />} />
+   
+      <Route path="home/landing" element={<HomeLayout />} />
       <Route path="auth/*" element={<AuthLayout />} />
       <Route path="admin/*" element={<AdminLayout />} />
       <Route
