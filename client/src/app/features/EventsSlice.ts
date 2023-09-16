@@ -1,9 +1,19 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
+export interface Location {
+  x: number;
+  y: number;
+}
 export interface Events {
   id: string;
   title: string;
-  desc: string;
+  description: string;
+  date:Date;
+  path:Location[];
+  coverImage:string[];
+  eventImage:string[];
+  city:string;
+  
 }
 
 interface EventsState {

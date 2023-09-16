@@ -4,5 +4,5 @@ const router = express.Router();
 // router.post("/", createChat);
 // router.get("/:userId", userChats);
 // router.get("/find/:firstId/:secondId", findChat);
-router.post("/admin",Admin);
+router.post("/admin",getbyadmin);
 export default router;
