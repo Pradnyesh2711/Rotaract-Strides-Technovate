@@ -18,6 +18,10 @@ const MemberSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    club: {
+      type: String,
+      required: true,
+    },
     profilePicture: String,
     type: {
       type: String,
