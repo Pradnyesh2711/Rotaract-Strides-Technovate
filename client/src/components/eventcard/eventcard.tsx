@@ -1,9 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 function EventsCard({ event }: { event: any }) {
   const { title, date, description, city, club, coverImage } = event;
   const defaultImage =
     "https://images.unsplash.com/photo-1674574124345-02c525664b65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80";
+
+
+    const handleRegisterClick = () => {
+      // Store the event details in local storage or a state management system
+      // For example, you can use localStorage:
+      localStorage.setItem("selectedEvent", JSON.stringify(event));
+  
+      // Navigate to the checkout page
+     
+    };
   return (
     <div className="mx-4 my-2 flex flex-wrap justify-between">
       <div className="overflow-hidden rounded-xl bg-white shadow-lg">
@@ -33,7 +43,7 @@ function EventsCard({ event }: { event: any }) {
               </button>
             </div>
             <Link to="/home/user/checkout">
-              <button className="rounded-full bg-teal-500 px-4 py-2 font-bold text-white hover:bg-teal-600">
+              <button className="rounded-full bg-teal-500 px-4 py-2 font-bold text-white hover:bg-teal-600" onClick={handleRegisterClick}>
                 Register
               </button>
             </Link>
