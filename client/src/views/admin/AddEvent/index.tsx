@@ -2,6 +2,7 @@ import axios from "axios";
 import InputField from "components/fields/InputField";
 import { BACKEND_URL } from "constants/definitions";
 import { ChangeEvent, useEffect, useReducer, useState } from "react";
+import Upload from "./Upload";
 
 const initialState = {
   title: "",
@@ -162,6 +163,9 @@ const CreateEvent = () => {
                 onChange={(e) => handleFieldChange(e, "contactEmail")}
                 state={errorField === "contactEmail" ? "error" : ""}
               />
+            </div>
+            <div className="flex">
+              <Upload/>
             </div>
             <div className="text-center">
               <button

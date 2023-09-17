@@ -1,8 +1,11 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BACKEND_URL } from "constants/definitions";
+import { ReactNode } from 'react';
+
 
 export interface Member {
+  [x: string]: ReactNode;
   rotaractID: string;
   firstname: string;
   lastname: string;

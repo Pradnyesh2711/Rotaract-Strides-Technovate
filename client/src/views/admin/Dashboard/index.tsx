@@ -33,7 +33,7 @@ const Dashboard: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    // fetchData();
   }, []);
 
   const monthList = [

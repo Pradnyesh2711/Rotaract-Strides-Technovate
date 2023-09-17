@@ -2,6 +2,7 @@ import React from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import PaymentConfirmation from "components/PaymentConformation";
 import EventsCard from "components/eventcard/eventcard";
+import User_Header from "components/navbar/Main_index";
 
 export default function Checkout() {
   const history = useNavigate();
@@ -10,12 +11,18 @@ export default function Checkout() {
 };
 const storedEvent = JSON.parse(localStorage.getItem('selectedEvent'));
   return (
+    <div className="">
+    <User_Header />
+    
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
+      
       <div className="flex w-full max-w-screen-xl rounded-lg bg-white p-4 shadow-lg">
+
         {/* Event Card (Left) */}
         <div className="w-1/2 p-4">
           <div className="rounded-lg bg-blue-200 p-4">
-          <EventsCard event={storedEvent} />
+          <EventsCard event={storedEvent}  />
+          
           </div>
         </div>
 
@@ -85,6 +92,7 @@ const storedEvent = JSON.parse(localStorage.getItem('selectedEvent'));
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

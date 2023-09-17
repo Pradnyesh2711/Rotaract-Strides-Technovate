@@ -14,9 +14,23 @@ function EventsCard({ event }: { event: any }) {
       // Navigate to the checkout page
      
     };
+    const handleSee = () => {
+      // Store the event details in local storage or a state management system
+      // For example, you can use localStorage:
+      localStorage.setItem("selectedEvent", JSON.stringify(event));
+  
+      // Navigate to the checkout page
+     
+    };
+    
+
   return (
-    <div className="mx-4 my-2 flex flex-wrap justify-between">
-      <div className="overflow-hidden rounded-xl bg-white shadow-lg">
+    <div className=" w-400 mt-8 ml-8">
+      {/* Repeat the following card block to create multiple cards */}
+      
+     
+      <div className="w- ml-12 px-2 mb-8">
+        <div className="bg-white rounded-xl overflow-hidden shadow-lg">
         <img
           className="h-48 w-full object-cover"
           src={coverImage.length > 0 ? coverImage[0] : defaultImage}
@@ -38,18 +52,25 @@ function EventsCard({ event }: { event: any }) {
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <button className="rounded-full bg-teal-500 px-4 py-2 font-bold text-white hover:bg-teal-600">
+            {/* {isCheckoutPage ? null : ( */}
+            <Link to="/home/eventdetails">
+              <button className="rounded-full bg-teal-500 px-4 py-2 font-bold text-white hover:bg-teal-600" onClick={handleSee}>
                 See More
               </button>
+              </Link>
+            {/* )} */}
             </div>
+            {/* {isCheckoutPage ? null : ( */}
             <Link to="/home/user/checkout">
               <button className="rounded-full bg-teal-500 px-4 py-2 font-bold text-white hover:bg-teal-600" onClick={handleRegisterClick}>
                 Register
               </button>
             </Link>
+            {/* )} */}
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

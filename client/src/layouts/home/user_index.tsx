@@ -46,9 +46,9 @@ function Home() {
         </Carousel>
       </div>
       <div>
-        <h1 className="mb-8 text-3xl font-semibold text-teal-500">Events</h1>
+        <h1 className="flex  mt-10 mb-8 ml-5 text-3xl font-bold size-13 text-teal-500 justify-center">Latest Events</h1>
       </div>
-      <div className="grid grid-cols-3">
+      <div className="flex flex-wrap justify-around ">
         {localEvents.length > 0 &&
           localEvents
             .slice(0, 3)
