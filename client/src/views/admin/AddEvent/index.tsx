@@ -47,6 +47,11 @@ const CreateEvent = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    // const res = await axios.post(`${BACKEND_URL}/events/uploadImage`, {
+    //   image,
+    // });
+    let coverImage =
+      "https://images.unsplash.com/photo-1598012268972-217e6036c419?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80";
     const payload = {
       title: state.title,
       date: state.date,
@@ -55,6 +60,7 @@ const CreateEvent = () => {
       club: state.club,
       contactNo: state.contactNo,
       contactEmail: state.contactEmail,
+      coverImage: [coverImage],
     };
     const event = await axios.post(`${BACKEND_URL}/events/addEvent`, payload);
     dispatch({ type: "RESET" });
