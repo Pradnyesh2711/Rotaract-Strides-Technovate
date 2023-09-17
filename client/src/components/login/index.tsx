@@ -86,10 +86,6 @@ function Login() {
   };
 
   return (
-    
-      
-        
-          
     <div className="flex h-[100vh] flex-col items-center justify-start bg-gray-200 pb-3">
       <div className="mx-auto flex items-center justify-center py-3">
         <img src={logo} width={65} height={65} alt="Logo" />
@@ -98,11 +94,11 @@ function Login() {
           Rotaract Strides
         </span>
       </div>
-      <Link to="/home" className='absolute top-4 left-5'>
-          <div className='w-12 h-12 flex items-center justify-center bg-blue-500 text-white rounded-full'>
-            <span className='text-2xl font-bold '>&lt;</span>
-          </div>
-        </Link>
+      <Link to="/" className="absolute left-5 top-4">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white">
+          <span className="text-2xl font-bold ">&lt;</span>
+        </div>
+      </Link>
 
       <Card
         extra={
@@ -168,8 +164,6 @@ function Login() {
         </p>
       </Card>
     </div>
-
-
   );
 }
 

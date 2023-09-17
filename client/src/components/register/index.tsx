@@ -133,7 +133,7 @@ function Register() {
                   />
                 </div>
               </div>
-              <Link to="/home" className="absolute left-5 top-9">
+              <Link to="/" className="absolute left-5 top-9">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-navy-600 text-white">
                   <span className="text-2xl font-bold ">&lt;</span>
                 </div>
