@@ -25,27 +25,26 @@ const OTPModal = ({ isShow, toggleModal, mobile, password }) => {
     };
 
     try {
-      let res = await axios.post(`${BACKEND_URL}/auth/checkotp`, formData);
-      if (res.data?.mobile) {
-        toast.success("Account Created");
-        setTimeout(() => {
-          navigate("/login");
-        }, 1000);
-      } else {
-        toast.error("Invalid OTP");
-      }
+      console.log(formData);
+      let res = await axios.post(`${BACKEND_URL}/auth/checkOtp`, formData);
+      setTimeout(() => {
+        navigate("/home/login");
+      }, 1000);
     } catch (ex) {
       alert(ex);
     }
+    console.log(formData);
   };
 
   return (
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center ${
-        isShow ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        isShow
+          ? "pointer-events-auto opacity-100"
+          : "pointer-events-none opacity-0"
       } transition-opacity duration-300`}
     >
-      <div className="bg-white w-96 p-4 rounded-lg shadow-lg">
+      <div className="w-96 rounded-lg bg-white p-4 shadow-lg">
         <div className="flex justify-end">
           <button onClick={toggleModal}>
             <svg
@@ -55,11 +54,16 @@ const OTPModal = ({ isShow, toggleModal, mobile, password }) => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
-        <h2 className="text-2xl font-bold mb-3">OTP Verification</h2>
+        <h2 className="mb-3 text-2xl font-bold">OTP Verification</h2>
         <p>
           Enter the 6-digit one-time password sent to your Mobile No. <br />
           <span className="mt-2">{mobile}</span>
@@ -69,12 +73,15 @@ const OTPModal = ({ isShow, toggleModal, mobile, password }) => {
             <input
               key={index}
               id={`otp-${index}`}
-              className="w-12 h-12 text-center border border-gray-300 rounded"
+              className="h-12 w-12 rounded border border-gray-300 text-center"
               type="text"
               maxLength="1"
               value={otp[index] || ""}
               onChange={(e) => {
-                if (/^\d+$/.test(e.target.value) && e.target.value.length <= 1) {
+                if (
+                  /^\d+$/.test(e.target.value) &&
+                  e.target.value.length <= 1
+                ) {
                   const newOtp = [...otp];
                   newOtp[index] = e.target.value;
                   setOtp(newOtp.join(""));
@@ -89,15 +96,15 @@ const OTPModal = ({ isShow, toggleModal, mobile, password }) => {
             />
           ))}
         </div>
-        <div className="mt-4">
+        <div className="mt-4 flex justify-center">
           <button
-            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+            className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
             onClick={validate}
           >
             Validate
           </button>
         </div>
-        <div className="mt-4 bg-gray-100 text-gray-800 p-2 text-center">
+        <div className="mt-4 bg-gray-100 p-2 text-center text-gray-800">
           <span>Didn't get the code - </span>
           <a href="#" className="text-blue-500 underline">
             Resend

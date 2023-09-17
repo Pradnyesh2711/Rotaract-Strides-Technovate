@@ -54,9 +54,7 @@ const CreateEvent = () => {
       contactNo: state.contactNo,
       contactEmail: state.contactEmail,
     };
-    console.log(state);
     const event = await axios.post(`${BACKEND_URL}/events/addEvent`, payload);
-    console.log(event);
     dispatch({ type: "RESET" });
   };
   return (

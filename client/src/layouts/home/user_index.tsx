@@ -1,11 +1,28 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import Header from "components/navbar/user_index";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import EventsC from "components/eventcard/eventcard";
 import Footer from "components/footer/index";
+import { BACKEND_URL } from "constants/definitions";
+import axios from "axios";
+import EventsCard from "components/eventcard/eventcard";
+import { useAppDispatch, useAppSelector } from "app/store";
+import { setEvents } from "app/features/EventsSlice";
 
 function Home() {
+  const dispatch = useAppDispatch();
+  const [localEvents, setLocalEvents] = useState([]);
+  const fetchData = async () => {
+    const res = await axios.post(`${BACKEND_URL}/events/getByCity`, {
+      city: "empty",
+    });
+    dispatch(setEvents(res.data));
+    setLocalEvents(res.data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <>
       <Header />
@@ -29,10 +46,13 @@ function Home() {
         </Carousel>
       </div>
       <div>
-        <h1 className="mb-8 text-3xl font-semibold text-teal-500">Events</h1>
+        <h1 className="flex  mt-10 mb-8 ml-5 text-3xl font-bold size-13 text-teal-500 justify-center">Latest Events</h1>
       </div>
-      <div>
-        <EventsC />
+      <div className="flex flex-wrap justify-around ">
+        {localEvents.length > 0 &&
+          localEvents
+            .slice(0, 3)
+            .map((event: any) => <EventsCard key={event._id} event={event} />)}
       </div>
       <Footer />
     </>

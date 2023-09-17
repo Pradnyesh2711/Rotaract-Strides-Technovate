@@ -14,28 +14,19 @@ import PaymentConfirmation from "components/PaymentConformation";
 const App = () => {
   return (
     <Routes>
-      <Route path="home/*" element={< Home/>} />
+      <Route path="/" element={< Home/>} />
       <Route path="home/user" element={<EventCard/>} />
       <Route path="home/about" element={<AboutUs/>} />
   <Route path="home/contact" element={<ContactUs/>} />
   <Route path="home/login" element={<Login/>} />
   <Route path="home/register" element={<Register/>} />
       <Route path="home/landing" element={<HomeLayout />} />
-      <Route path="auth/*" element={<AuthLayout />} />
+      <Route path="auth/login" element={<AuthLayout />} />
       <Route path="admin/*" element={<AdminLayout />} />
       <Route path="admin/*" element={<AdminLayout />} />
       <Route path="home/user/checkout" element={<Checkout />} />
       <Route path="home/user/checkout/payment" element={<PaymentConfirmation />} />
-      <Route
-        path="/"
-        element={
-          localStorage.getItem("token") ? (
-            <Navigate to="/admin/dashboard" replace />
-          ) : (
-            <Navigate to="/auth" replace />
-          )
-        }
-      />
+      
     </Routes>
   );
 };
