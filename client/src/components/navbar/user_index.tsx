@@ -4,33 +4,24 @@ import logo from "assets/img/logo/logo.png";
 
 function Header() {
   return (
-    <div className="bg-white-600 text-black flex items-center justify-between px-4 py-5">
-      <Link to="/">
+    <div className="bg-white-600 text-black py-5 px-4 flex justify-between items-center">
+      <Link to="/" className="flex items-center"> {/* Wrap both logo and heading in a flex container */}
         <img
           src={logo}
           alt="Logo"
-          className="mr-2 h-20 w-20" // Adjust width, height, and margin as needed
+          className="w-20 h-20" // Removed margin classes
         />
+        <h1 className="text-2xl font-bold text-black">Rotaract Stride</h1> {/* Move the heading here */}
       </Link>
-
+      
       <div className="space-x-4">
         <ul className="flex space-x-4">
-          <Link to="/home/about" className="text-1xl font-bold">
-            About Us
-          </Link>
-          <Link to="/home/contact" className="text-1xl font-bold">
-            Contact Us
-          </Link>
-          <Link to="/auth" className="text-1xl font-bold">
-            Already a member ?
-          </Link>
-          <Link to="/home/login" className="text-1xl font-bold">
-            Login
-          </Link>
+          <Link to="/home/about" className="text-1xl font-bold hover:text-blue-500">About Us</Link>
+          <Link to="/home/contact" className="text-1xl font-bold hover:text-blue-500">Contact Us</Link>
+          <Link to="/auth/login" className="text-1xl font-bold hover:text-blue-500">Already a member ?</Link>
+          <Link to="/home/login" className="text-1xl font-bold hover:text-blue-500">Login</Link>
           <p className="text-1xl font-bold">|</p>
-          <Link to="/home/register" className="text-1xl font-bold">
-            Register
-          </Link>
+          <Link to="/home/register" className="text-1xl font-bold hover:text-blue-500">Register</Link>
         </ul>
       </div>
     </div>
