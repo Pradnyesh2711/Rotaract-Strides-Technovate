@@ -10,12 +10,12 @@ io.on("connection", (socket) => {
   // add new User
   socket.on("new-user-add", (newUserId) => {
     // if user is not added previously
-    if (!activeUsers.some((user) => user.userId === newUserId)) {
-      activeUsers.push({ userId: newUserId, socketId: socket.id });
-      console.log("New User Connected", activeUsers);
-    }
-    // send all active users to new user
-    io.emit("get-users", activeUsers);
+      if (!activeUsers.some((user) => user.userId === newUserId) && newUserId !== null) {
+        activeUsers.push({ userId: newUserId, socketId: socket.id });
+        console.log("New User Connected", activeUsers);
+      }
+      // send all active users to new user
+      io.emit("get-users", activeUsers);
   });
 
   socket.on("disconnect", () => {
@@ -32,8 +32,12 @@ io.on("connection", (socket) => {
     const user = activeUsers.find((user) => user.userId === receiverId);
     console.log("Sending from socket to :", receiverId)
     console.log("Data: ", data)
+    console.log(user)
     if (user) {
-      io.to(user.socketId).emit("recieve-message", data);
+      io.emit("recieve-message", data);
+      console.log("Arrived")
+      // io.to(user.socketId).emit("recieve-message", data);
+      
     }
   });
 });

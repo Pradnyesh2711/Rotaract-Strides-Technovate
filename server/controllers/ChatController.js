@@ -29,7 +29,8 @@ export const findChat = async (req, res) => {
     const chat = await ChatModel.findOne({
       members: { $all: [firstId, secondId] },
     });
-    if (chat.length == 0) {
+    console.log(chat)
+    if (chat == null) {
       const newChat = new ChatModel({
         members: [firstId, secondId],
       });
