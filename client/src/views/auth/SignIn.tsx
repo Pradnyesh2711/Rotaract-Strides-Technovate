@@ -7,6 +7,7 @@ import { BACKEND_URL } from "constants/definitions";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "app/store";
 import { setMember } from "app/features/MemberSlice";
+import { IoIosArrowBack } from "react-icons/io";
 
 export default function SignIn() {
   const dispatch = useAppDispatch();
@@ -85,7 +86,17 @@ export default function SignIn() {
   };
 
   return (
-    <div className="flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center">
+    <div className="relative flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center">
+      <button
+        className="border-px absolute left-[35px] top-[-70px] !z-[99] flex h-[60px] w-[60px] items-center justify-center rounded-full border-[#6a53ff] bg-gradient-to-br from-brandLinear to-blueSecondary p-0"
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        <div className="cursor-pointer text-gray-600">
+          <IoIosArrowBack className="text-2xl text-white" />
+        </div>
+      </button>
       {/* Sign in section */}
       <Card
         extra={
