@@ -15,8 +15,8 @@ const storedEvent = JSON.parse(localStorage.getItem('selectedEvent'));
         {/* Event Card (Left) */}
         <div className="w-1/2 p-4">
           <div className="rounded-lg bg-blue-200 p-4">
-          <EventsCard event={storedEvent} />
-          {/* isCheckoutPage={true}  */}
+          <EventsCard event={storedEvent}  />
+          
           </div>
         </div>
 
