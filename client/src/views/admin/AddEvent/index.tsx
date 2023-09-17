@@ -62,7 +62,8 @@ const CreateEvent = () => {
       contactEmail: state.contactEmail,
       coverImage: [coverImage],
     };
-    const event = await axios.post(`${BACKEND_URL}/events/addEvent`, payload);
+    const res = await axios.post(`${BACKEND_URL}/events/addEvent`, payload);
+    console.log(res.data);
     dispatch({ type: "RESET" });
   };
   return (
@@ -179,7 +180,7 @@ const CreateEvent = () => {
                 type="submit"
                 className="w-70 w-64 rounded-md bg-navy-700 px-4 py-2 text-white shadow-2xl  transition duration-300 hover:bg-navy-900 "
               >
-                Submit
+                Add Path
               </button>
             </div>
           </form>
