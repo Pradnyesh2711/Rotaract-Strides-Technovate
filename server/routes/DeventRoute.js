@@ -44,4 +44,16 @@ router.post("/getByClub", async (req, res) => {
   }
 });
 
+router.post("/uploadImage", async (req, res) => {
+  try {
+    const result = await cloudinary.v2.uploader.upload(req.body.image, {
+      folder: "Marathons",
+    });
+    // Send response
+    res.status(200).json({ url: result.secure_url });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 export default router;
