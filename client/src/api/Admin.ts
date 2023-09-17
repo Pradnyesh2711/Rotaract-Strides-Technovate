@@ -1,10 +1,10 @@
 import axios from "axios";
 import { BACKEND_URL } from "constants/definitions";
 
-export const getAdminByID = async (id: string) => {
+export const getAllAdmins = async () =>{
   try {
     const res = await axios.get(
-      `${BACKEND_URL}/admin/get_admin_by_id?id=${localStorage.getItem("token")}`
+      `${BACKEND_URL}/dember/getAdmins`
     );
     return res.data;
   } catch (error) {

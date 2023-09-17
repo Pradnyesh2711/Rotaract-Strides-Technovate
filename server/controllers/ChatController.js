@@ -24,12 +24,23 @@ export const userChats = async (req, res) => {
 };
 
 export const findChat = async (req, res) => {
+  const { firstId, secondId } = req.body;
   try {
     const chat = await ChatModel.findOne({
-      members: { $all: [req.params.firstId, req.params.secondId] },
+      members: { $all: [firstId, secondId] },
     });
-    res.status(200).json(chat)
+    console.log(chat)
+    if (chat == null) {
+      const newChat = new ChatModel({
+        members: [firstId, secondId],
+      });
+      const result = await newChat.save();
+      console.log(result);
+      res.status(200).json(result);
+    } else {
+      res.status(200).json(chat);
+    }
   } catch (error) {
-    res.status(500).json(error)
+    res.status(500).json(error);
   }
 };

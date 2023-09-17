@@ -16,7 +16,7 @@ export const SidebarLinks = (props: { routes: RoutesType[] }): JSX.Element => {
 
   const createLinks = (routes: RoutesType[]) => {
     return routes.map((route, index) => {
-      if (route.layout === "/admin" && route.path !== "editEvent") {
+      if (route.layout === "/admin" && route.path !== "editEvent" && route.path !== "chat") {
 
         return (
           <Link key={index} to={route.layout + "/" + route.path}>
