@@ -13,11 +13,12 @@ const Chat = () => {
   const socket = useRef();
   const { user } = useSelector((state) => state.member.data);
   const [userid, setUserId] = useState();
+  const [chats, setChats] = useState([]);
   const [currentChat, setCurrentChat] = useState({_id:'850578211aed00100df0986d' ,members:['650578211aed00100df0986d', '750578211aed00100df0986d']});
   const [sendMessage, setSendMessage] = useState(null);
   const [receivedMessage, setReceivedMessage] = useState(null);
   const location = useLocation()
-  const [receiverId, setRecieverId] = useState();
+  const [receiver, setReciever] = useState();
   // Get the chat in chat section
   useEffect( () => {
 
@@ -27,18 +28,18 @@ const Chat = () => {
       navigate('/')
     }
     setUserId(uid)
-    console.log(location.state?.member?._id)
-    setRecieverId(location.state?.member?._id)
-    // const getChats = async () => {
+    console.log(location.state?.member)
+    setReciever(location.state?.member)
+    const getChats = async () => {
       
-    //   try {
-    //     const { data } = await userChats(userid);
-    //     setChats(data);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // };
-    // getChats();
+      try {
+        const { data } = await userChats(userid);
+        setChats(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getChats();
   }, [userid]);
 
   // Connect to Socket.io
@@ -79,6 +80,7 @@ const Chat = () => {
           receivedMessage={receivedMessage}
           userId = {userid}
           user = {user}
+          receiver={receiver}
         />
       </div>
   );

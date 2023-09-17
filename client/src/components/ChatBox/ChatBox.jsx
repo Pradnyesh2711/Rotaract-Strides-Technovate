@@ -6,7 +6,7 @@ import "./ChatBox.css";
 import { format } from "timeago.js";
 import InputEmoji from 'react-input-emoji'
 
-const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage, userId, user }) => {
+const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage, userId, user , receiver}) => {
   const [userData, setUserData] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
@@ -76,10 +76,10 @@ const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage, userId, 
                 
                 <div className='bg-blue-200 bordersolid my-2 rounded-t-md py-2 px-6 grid grid-cols-2'>
                     <div className="flex">
-                        <div className="rounded-full bg-gray-500 w-20 h-20 justify-center flex items-center text-3xl"> S </div>
+                        <div className="rounded-full bg-gray-500 w-20 h-20 justify-center flex items-center text-3xl"> {receiver?.firstname.slice(0,1)} </div>
                         <div className="flex-col p-3">
-                            <h4 className="font-bold capitalize text-navy-700 dark:text-white text-2xl  "> Sujal Chordia</h4>
-                            <h4 className="font-bold capitalize text-navy-600 dark:text-white text-xl "> RC SPIT</h4>
+                            <h4 className="font-bold capitalize text-navy-700 dark:text-white text-2xl  "> {receiver?.firstname} {receiver?.lastname}</h4>
+                            <h4 className="font-bold capitalize text-navy-600 dark:text-white text-xl "> {receiver?.club}</h4>
                         </div>
                     </div>
                 </div>

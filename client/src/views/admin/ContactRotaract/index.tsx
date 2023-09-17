@@ -1,40 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import { getAllAdmins } from "api/Admin";
 
 interface Member {
+
     _id:string;
     rotaractID: string;
     firstname: string;
     lastname: string;
     club:string;
     type: string;
-    profilePicture: string;
   }
 
 export default function ContactRotaract() {
-    const [adminMembers, setAdminMembers] = useState<Array<Member>>([
-        {
-            _id:'string',
-    rotaractID: 'string',
-    firstname: 'Sujal',
-    lastname: 'Chordia',
-    club:'RC SPIT',
-    type: 'admin',
-    profilePicture: null,
-        },
-        {
-            _id:'string',
-    rotaractID: 'string',
-    firstname: 'Sujal',
-    lastname: 'Chordia',
-    club:'RC SPIT',
-    type: 'admin',
-    profilePicture: null,
-        }
-    ])
-    const navigate = useNavigate()
     const [userid, setUserId] = useState<string>();
+    useEffect(()=>
+    {
+        const uid = localStorage.getItem('id');
+        if(uid === null)
+        {
+        navigate('/')
+        }
+        setUserId(uid)
+        const fetchData = async()=> {
+            const data = await getAllAdmins()
+       
+            return data
+          }
+
+          fetchData().then((response)=>
+          {
+            setAdminMembers(response.admins.filter((admin:Member)=>
+            admin._id !== userid
+            ))
+            console.log(adminMembers)
+          })
+        
+    },[])
+    const [adminMembers, setAdminMembers] = useState<Array<Member>>([    ])
+    const navigate = useNavigate()
+    
     useEffect(() => {
 
         const uid =  localStorage.getItem('id');
