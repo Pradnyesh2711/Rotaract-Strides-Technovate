@@ -1,6 +1,8 @@
 /* eslint-disable */
 import { Link, useLocation } from "react-router-dom";
 import DashIcon from "components/icons/DashIcon";
+import { useEffect, useState } from "react";
+import { TiSortNumerically } from "react-icons/ti";
 // chakra imports
 
 export const SidebarLinks = (props: { routes: RoutesType[] }): JSX.Element => {
@@ -15,8 +17,19 @@ export const SidebarLinks = (props: { routes: RoutesType[] }): JSX.Element => {
   };
 
   const createLinks = (routes: RoutesType[]) => {
+    
+  const adminPaths = ['addEvent', 'contactRotaract']
+  const [isAdmin ,setIsAdmin]  = useState(false)
+  useEffect(()=>
+  {
+    if(localStorage.getItem('type') === 'admin')
+    {
+      setIsAdmin(true)
+    }
+  },[])
+
     return routes.map((route, index) => {
-      if (route.layout === "/admin" && route.path !== "editEvent" && route.path !== "chat") {
+      if (route.layout === "/admin" && route.path !== "editEvent" && route.path !== "chat" && (!adminPaths.includes(route.path) || isAdmin)) {
 
         return (
           <Link key={index} to={route.layout + "/" + route.path}>
