@@ -99,6 +99,7 @@ const CreateEvent = () => {
                   Description:
                 </label>
                 <textarea
+                  placeholder="Description..."
                   id="description"
                   name="description"
                   value={state.description}
