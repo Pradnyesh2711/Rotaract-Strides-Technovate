@@ -14,7 +14,7 @@ function User_Header() {
             alt="Logo"
             className="w-20 h-20 mr-2"
           />
-            <h1 className="text-2xl font-bold text-black">Rotaract Stride</h1>
+            <h1 className="text-2xl font-bold text-black ml-5">Rotaract Stride</h1>
         </Link>
   
         <div className="space-x-4">

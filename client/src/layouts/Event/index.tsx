@@ -14,8 +14,8 @@ function EventDetail() {
   }
 
   const { title, date, description, city, club, coverImage } = storedEvent
-  const defaultImage =
-    "https://images.unsplash.com/photo-1674574124345-02c525664b65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80";
+  // const defaultImage =
+  //   "https://images.unsplash.com/photo-1674574124345-02c525664b65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80";
 
   const handleRegisterClick = () => {
     // Store the event details in local storage or a state management system
@@ -28,10 +28,10 @@ function EventDetail() {
   return (
     <div>
       <Header />
-      {/* Carousel */}
-      <div className="mx-auto mt-1">
+      
+      {/* <div className="mx-auto mt-1">
         <Carousel showArrows={true} showThumbs={false} className="w-full">
-          <div className="m-0 h-[60vh] w-full">
+          <div className="m-0 h-[80vh] w-full">
             <img
               className="h-48 w-full object-cover"
               src={coverImage.length > 0 ? coverImage[0] : defaultImage}
@@ -45,9 +45,9 @@ function EventDetail() {
               alt="Event"
             />
           </div>
-          {/* Add more images and descriptions */}
+          Add more images and descriptions
         </Carousel>
-      </div>
+      </div> */}
 
       <div className="flex">
         {/* Event details */}
@@ -57,16 +57,18 @@ function EventDetail() {
           <p className="text-gray-700 mb-2">Description: {description}</p>
           <p className="text-gray-700">Location: {city}</p>
           {/* Add more event details here */}
-        </div>
-
-        {/* Register button */}
-        <div className="flex items-end">
+          <div className="flex items-end mt-5">
           <Link to="/home/user/checkout">
             <button className="rounded-full bg-teal-500 px-4 py-2 font-bold text-white hover:bg-teal-600" onClick={handleRegisterClick}>
               Register
             </button>
           </Link>
         </div>
+        </div>
+        
+
+        {/* Register button */}
+        
       </div>
 
       <Footer />

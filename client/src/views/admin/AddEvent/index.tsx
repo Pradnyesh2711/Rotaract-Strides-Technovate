@@ -180,7 +180,7 @@ const CreateEvent = () => {
                 type="submit"
                 className="w-70 w-64 rounded-md bg-navy-700 px-4 py-2 text-white shadow-2xl  transition duration-300 hover:bg-navy-900 "
               >
-                Add Path
+                Submit
               </button>
             </div>
           </form>

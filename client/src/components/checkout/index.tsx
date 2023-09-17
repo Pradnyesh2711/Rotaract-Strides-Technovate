@@ -19,8 +19,8 @@ const storedEvent = JSON.parse(localStorage.getItem('selectedEvent'));
       <div className="flex w-full max-w-screen-xl rounded-lg bg-white p-4 shadow-lg">
 
         {/* Event Card (Left) */}
-        <div className="w-1/2 p-4">
-          <div className="rounded-lg bg-blue-200 p-4">
+        <div className="w-1/2 p-4 ">
+          <div className="rounded-lg bg-blue-200 p-2 flex justify-center pr-14 ">
           <EventsCard event={storedEvent}  />
           
           </div>

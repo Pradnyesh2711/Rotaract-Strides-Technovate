@@ -13,7 +13,7 @@ function Header() {
           alt="Logo"
           className="h-20 w-20" // Removed margin classes
         />
-        <h1 className="text-black text-2xl font-bold">Rotaract Stride</h1>{" "}
+        <h1 className="text-black text-2xl font-bold ml-5">Rotaract Stride</h1>{" "}
         {/* Move the heading here */}
       </Link>
 
