@@ -53,11 +53,11 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="h-max">
-      <div className="mt-6 rounded-xl bg-white px-16 py-6 shadow-2xl">
-        <h2 className="text-3xl font-bold capitalize text-navy-700 dark:text-white">
+      <div className="mt-6 rounded-xl bg-white px-16 py-6 shadow-2xl dark:bg-navy-800">
+        <h2 className="text-3xl font-bold capitalize text-navy-700 dark:text-white ">
           My Marathons
         </h2>
-        <div className="my-6 grid grid-cols-12">
+        <div className="my-6 grid grid-cols-12 ">
           {monthList.map((month) => {
             return month == selectedMonth ? (
               <button className="mx-1 rounded-md bg-yellow-600 py-3 ">
@@ -82,7 +82,7 @@ const Dashboard: React.FC = () => {
                 selectedMonth == monthList[new Date(e.date).getMonth()]
             )
             .map((event) => (
-              <div className="bordersolid my-3 rounded-md bg-blue-200 px-6 py-3">
+              <div className="bordersolid my-3 rounded-md bg-blue-200 px-6 py-3 dark:bg-navy-900">
                 <div className="grid grid-cols-2">
                   <h4 className="text-lg font-bold capitalize text-navy-700 dark:text-white">
                     {" "}
@@ -124,8 +124,8 @@ const Dashboard: React.FC = () => {
             (e: EventState) =>
               selectedMonth == monthList[new Date(e.date).getMonth()]
           ).length ? null : (
-            <div className="bordersolid my-3 rounded-md bg-blue-200 px-6 py-3">
-              <h4 className="text-lg font-bold capitalize text-navy-700 dark:text-white">
+            <div className="bordersolid my-3 rounded-md bg-blue-200 px-6 py-3 dark:bg-navy-900">
+              <h4 className="text-lg font-bold capitalize text-navy-700 dark:text-white ">
                 No Events
               </h4>
             </div>
