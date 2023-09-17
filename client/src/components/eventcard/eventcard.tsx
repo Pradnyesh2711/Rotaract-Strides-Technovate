@@ -14,6 +14,16 @@ function EventsCard({ event }: { event: any }) {
       // Navigate to the checkout page
      
     };
+    const handleSee = () => {
+      // Store the event details in local storage or a state management system
+      // For example, you can use localStorage:
+      localStorage.setItem("selectedEvent", JSON.stringify(event));
+  
+      // Navigate to the checkout page
+     
+    };
+    
+
   return (
     <div className="mx-4 my-2 flex flex-wrap justify-between">
       <div className="overflow-hidden rounded-xl bg-white shadow-lg">
@@ -38,9 +48,11 @@ function EventsCard({ event }: { event: any }) {
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <button className="rounded-full bg-teal-500 px-4 py-2 font-bold text-white hover:bg-teal-600">
+            <Link to="/home/eventdetails">
+              <button className="rounded-full bg-teal-500 px-4 py-2 font-bold text-white hover:bg-teal-600" onClick={handleSee}>
                 See More
               </button>
+              </Link>
             </div>
             <Link to="/home/user/checkout">
               <button className="rounded-full bg-teal-500 px-4 py-2 font-bold text-white hover:bg-teal-600" onClick={handleRegisterClick}>
