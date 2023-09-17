@@ -1,67 +1,37 @@
 // src/CalendarPage.tsx
-import React, { useState } from "react";
+import { useAppSelector } from "app/store";
+import axios from "axios";
+import { BACKEND_URL } from "constants/definitions";
+import React, { useEffect, useState } from "react";
 import { FaHandPaper } from "react-icons/fa";
 interface EventState {
   id: string;
-  eventType: string;
-  name: string;
+  type: string;
+  title: string;
   date: Date;
-  location: string;
+  city: string;
   description: string;
+  club: string;
 }
 
 const CalendarPage: React.FC = () => {
+  const [eventList, setEventList] = useState<Array<EventState>>([]);
+  const member = useAppSelector((state) => state.member.data);
   const d = new Date();
   const [selectedMonth, SetSelectedMonth] = useState(
     d.toLocaleString("en-US", { month: "short" })
   );
-  const [eventList, SetEventList] = useState<Array<EventState>>([
-    {
-      id: "adasasjfjfs",
-      eventType: "Marathon",
-      name: "SPIT Marathon",
-      date: new Date(),
-      location: "Andheri, Mumbai",
-      description:
-        "Join us for an exhilarating marathon experience that will test your endurance, determination, and love for running! The SPIT Marathon promises an unforgettable journey through scenic routes, camaraderie with fellow runners, and the thrill of crossing the finish line.",
-    },
-    {
-      id: "adasasjfjfs",
-      eventType: "Marathon",
-      name: "SPIT Marathon",
-      date: new Date(),
-      location: "Andheri, Mumbai",
-      description:
-        "Join us for an exhilarating marathon experience that will test your endurance, determination, and love for running! The SPIT Marathon promises an unforgettable journey through scenic routes, camaraderie with fellow runners, and the thrill of crossing the finish line.",
-    },
-    {
-      id: "adasasjfjfs",
-      eventType: "Marathon",
-      name: "SPIT Marathon",
-      date: new Date(),
-      location: "Andheri, Mumbai",
-      description:
-        "Join us for an exhilarating marathon experience that will test your endurance, determination, and love for running! The SPIT Marathon promises an unforgettable journey through scenic routes, camaraderie with fellow runners, and the thrill of crossing the finish line.",
-    },
-    {
-      id: "adasasjfjfs",
-      eventType: "Marathon",
-      name: "SPIT Marathon",
-      date: new Date(),
-      location: "Andheri, Mumbai",
-      description:
-        "Join us for an exhilarating marathon experience that will test your endurance, determination, and love for running! The SPIT Marathon promises an unforgettable journey through scenic routes, camaraderie with fellow runners, and the thrill of crossing the finish line.",
-    },
-    {
-      id: "adasasjfjfs",
-      eventType: "Marathon",
-      name: "SPIT Marathon",
-      date: new Date(),
-      location: "Andheri, Mumbai",
-      description:
-        "Join us for an exhilarating marathon experience that will test your endurance, determination, and love for running! The SPIT Marathon promises an unforgettable journey through scenic routes, camaraderie with fellow runners, and the thrill of crossing the finish line.",
-    },
-  ]);
+  const fetchData = async () => {
+    const res = await axios.post(`${BACKEND_URL}/events/getByCity`, {
+      city: "empty",
+    });
+    setEventList(res.data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const monthList = [
     "Jan",
     "Feb",
@@ -81,17 +51,17 @@ const CalendarPage: React.FC = () => {
     <div className="h-max">
       <div className="mt-6 rounded-xl bg-white px-16 py-6 shadow-2xl">
         <h2 className="text-3xl font-bold capitalize text-navy-700 dark:text-white">
-          Marathons
+          All Marathons
         </h2>
         <div className="my-6 grid grid-cols-12">
           {monthList.map((month) => {
             return month == selectedMonth ? (
-              <button className="mx-1 rounded-md bg-yellow-600 px-6 py-3 ">
+              <button className="mx-1 rounded-md bg-yellow-600 py-3 ">
                 {month}
               </button>
             ) : (
               <button
-                className="mx-1 rounded-md bg-yellow-200 px-6 py-3 "
+                className="mx-1 rounded-md bg-yellow-200 py-3 "
                 onClick={() => {
                   SetSelectedMonth(month);
                 }}
@@ -103,13 +73,17 @@ const CalendarPage: React.FC = () => {
         </div>
         <div>
           {eventList
-            .filter((e) => selectedMonth == monthList[e.date.getMonth()])
+            .filter(
+              (e: EventState) =>
+                selectedMonth == monthList[new Date(e.date).getMonth()]
+            )
             .map((event) => (
               <div className="bordersolid my-3 rounded-md bg-blue-200 px-6 py-3">
                 <div className="grid grid-cols-2">
                   <h4 className="text-lg font-bold capitalize text-navy-700 dark:text-white">
                     {" "}
-                    {event.eventType} ({event.location})
+                    {event.title}{" "}
+                    <span className="ml-2 font-light">({event.club})</span>
                   </h4>
                   <div className="text-right ">
                     {localStorage.getItem("type") === "admin" ? null : (
@@ -119,10 +93,10 @@ const CalendarPage: React.FC = () => {
                     )}
                   </div>
                   <h5 className="text-lg font-bold capitalize text-navy-500 dark:text-white">
-                    {event.name}
+                    {event.city}
                   </h5>
                   <h5 className="text-lg font-bold capitalize text-navy-500 dark:text-white">
-                    {event.date.toDateString()}
+                    {new Date(event.date).toDateString()}
                   </h5>
                 </div>
                 <p className="my-2 text-sm font-bold text-navy-400 dark:text-white">
@@ -131,7 +105,7 @@ const CalendarPage: React.FC = () => {
               </div>
             ))}
           {eventList.filter(
-            (e) => selectedMonth == monthList[e.date.getMonth()]
+            (e) => selectedMonth == monthList[new Date(e.date).getMonth()]
           ).length ? null : (
             <div className="bordersolid my-3 rounded-md bg-blue-200 px-6 py-3">
               <h4 className="text-lg font-bold capitalize text-navy-700 dark:text-white">

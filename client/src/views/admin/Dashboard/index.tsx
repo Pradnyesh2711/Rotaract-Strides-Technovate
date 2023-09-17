@@ -1,73 +1,41 @@
 // src/Dashboard.tsx
 import { useAppSelector } from "app/store";
-import React, { useState } from "react";
+import axios from "axios";
+import { BACKEND_URL } from "constants/definitions";
+import React, { useEffect, useState } from "react";
 import { BsPencilFill, BsChatLeftDotsFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 interface EventState {
   id: string;
-  eventType: string;
-  name: string;
+  type: string;
+  title: string;
   date: Date;
-  location: string;
+  city: string;
   description: string;
+  club: string;
 }
 
 const Dashboard: React.FC = () => {
   const d = new Date();
-
+  const member = useAppSelector((state) => state.member.data);
   const navigate = useNavigate();
+  const [eventList, setEventList] = useState<Array<EventState>>([]);
   const [selectedMonth, SetSelectedMonth] = useState(
     d.toLocaleString("en-US", { month: "short" })
   );
 
-  const [eventList, SetEventList] = useState<Array<EventState>>([
-    {
-      id: "adasasjfjfs",
-      eventType: "Marathon",
-      name: "SPIT Marathon",
-      date: new Date(),
-      location: "Andheri, Mumbai",
-      description:
-        "Join us for an exhilarating marathon experience that will test your endurance, determination, and love for running! The SPIT Marathon promises an unforgettable journey through scenic routes, camaraderie with fellow runners, and the thrill of crossing the finish line.",
-    },
-    {
-      id: "adasasjfjfs",
-      eventType: "Marathon",
-      name: "SPIT Marathon",
-      date: new Date(),
-      location: "Andheri, Mumbai",
-      description:
-        "Join us for an exhilarating marathon experience that will test your endurance, determination, and love for running! The SPIT Marathon promises an unforgettable journey through scenic routes, camaraderie with fellow runners, and the thrill of crossing the finish line.",
-    },
-    {
-      id: "adasasjfjfs",
-      eventType: "Marathon",
-      name: "SPIT Marathon",
-      date: new Date(),
-      location: "Andheri, Mumbai",
-      description:
-        "Join us for an exhilarating marathon experience that will test your endurance, determination, and love for running! The SPIT Marathon promises an unforgettable journey through scenic routes, camaraderie with fellow runners, and the thrill of crossing the finish line.",
-    },
-    {
-      id: "adasasjfjfs",
-      eventType: "Marathon",
-      name: "SPIT Marathon",
-      date: new Date(),
-      location: "Andheri, Mumbai",
-      description:
-        "Join us for an exhilarating marathon experience that will test your endurance, determination, and love for running! The SPIT Marathon promises an unforgettable journey through scenic routes, camaraderie with fellow runners, and the thrill of crossing the finish line.",
-    },
-    {
-      id: "adasasjfjfs",
-      eventType: "Marathon",
-      name: "SPIT Marathon",
-      date: new Date(),
-      location: "Andheri, Mumbai",
-      description:
-        "Join us for an exhilarating marathon experience that will test your endurance, determination, and love for running! The SPIT Marathon promises an unforgettable journey through scenic routes, camaraderie with fellow runners, and the thrill of crossing the finish line.",
-    },
-  ]);
+  const fetchData = async () => {
+    const res = await axios.post(`${BACKEND_URL}/events/getByClub`, {
+      club: member.club ? member.club : "RC-SPIT",
+    });
+    setEventList(res.data);
+  };
+
+  useEffect(() => {
+    // fetchData();
+  }, []);
+
   const monthList = [
     "Jan",
     "Feb",
@@ -109,13 +77,17 @@ const Dashboard: React.FC = () => {
         </div>
         <div>
           {eventList
-            .filter((e) => selectedMonth == monthList[e.date.getMonth()])
+            .filter(
+              (e: EventState) =>
+                selectedMonth == monthList[new Date(e.date).getMonth()]
+            )
             .map((event) => (
               <div className="bordersolid my-3 rounded-md bg-blue-200 px-6 py-3">
                 <div className="grid grid-cols-2">
                   <h4 className="text-lg font-bold capitalize text-navy-700 dark:text-white">
                     {" "}
-                    {event.eventType} ({event.location})
+                    {event.title}
+                    <span className="ml-2 font-light">({event.club})</span>
                   </h4>
                   <div className="text-right">
                     {localStorage.getItem("type") === "admin" ? (
@@ -137,10 +109,10 @@ const Dashboard: React.FC = () => {
                   </div>
 
                   <h5 className="text-lg font-bold capitalize text-navy-500 dark:text-white">
-                    {event.name}
+                    {event.city}, Maharashtra
                   </h5>
                   <h5 className="text-lg font-bold capitalize text-navy-500 dark:text-white">
-                    {event.date.toDateString()}
+                    {new Date(event.date).toDateString()}
                   </h5>
                 </div>
                 <p className="my-2 text-sm font-bold text-navy-400 dark:text-white">
@@ -149,7 +121,8 @@ const Dashboard: React.FC = () => {
               </div>
             ))}
           {eventList.filter(
-            (e) => selectedMonth == monthList[e.date.getMonth()]
+            (e: EventState) =>
+              selectedMonth == monthList[new Date(e.date).getMonth()]
           ).length ? null : (
             <div className="bordersolid my-3 rounded-md bg-blue-200 px-6 py-3">
               <h4 className="text-lg font-bold capitalize text-navy-700 dark:text-white">

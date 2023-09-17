@@ -8,7 +8,8 @@ export default function Checkout() {
   const history = useNavigate();
   const handlePayNowClick = () => {
     history("/home/user/checkout/payment");
-  };
+};
+const storedEvent = JSON.parse(localStorage.getItem('selectedEvent'));
   return (
     <div className="">
     <User_Header />
@@ -20,7 +21,8 @@ export default function Checkout() {
         {/* Event Card (Left) */}
         <div className="w-1/2 p-4">
           <div className="rounded-lg bg-blue-200 p-4">
-            {/* <EventsCard /> */}
+          <EventsCard event={storedEvent}  />
+          
           </div>
         </div>
 
