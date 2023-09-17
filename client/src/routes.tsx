@@ -3,12 +3,14 @@ import Dashboard from "views/admin/Dashboard";
 import AddEvent from "views/admin/AddEvent"
 import ViewEvent from "views/admin/ViewEvent"
 import EditEvent from "views/admin/EditEvent"
+import ContactRotaract from "views/admin/ContactRotaract";
+import Chat from "views/admin/chat/Chat";
 
 // Auth Imports
 import SignIn from "views/auth/SignIn";
 
 // Icon Imports
-import { MdHome, MdLock, MdReport } from "react-icons/md";
+import { MdHome, MdLock, MdReport, MdChat } from "react-icons/md";
 import { TbReport } from "react-icons/tb";
 import { FaTasks } from "react-icons/fa";
 import { BiCctv } from "react-icons/bi";
@@ -49,6 +51,20 @@ const routes = [
     path: "editEvent",
     icon: <MdLock className="h-6 w-6" />,
     component: <EditEvent />,
+  },
+  {
+    name: "Contact Other Rotaracts",
+    layout: "/admin",
+    path: "contactRotaract",
+    icon: <MdChat className="h-6 w-6" />,
+    component: <ContactRotaract />,
+  },
+  {
+    name: "Chat",
+    layout: "/admin",
+    path: "chat",
+    icon: <MdChat className="h-6 w-6" />,
+    component: <Chat />,
   },
   
 ];

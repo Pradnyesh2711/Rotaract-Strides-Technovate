@@ -9,6 +9,8 @@ import AuthRoute from "./routes/AuthRoute.js";
 import UserRoute from "./routes/UserRoute.js";
 import DemberRoute from "./routes/DemberRoute.js";
 import DeventRoute from "./routes/DeventRoute.js";
+import ChatRoute from "./routes/ChatRoute.js";
+import MessageRoute from "./routes/MessageRoute.js";
 
 const app = express();
 
@@ -33,3 +35,5 @@ app.use("/auth", AuthRoute);
 app.use("/user", UserRoute);
 app.use("/dember", DemberRoute);
 app.use("/events", DeventRoute);
+app.use("/chat", ChatRoute);
+app.use("/message", MessageRoute);
