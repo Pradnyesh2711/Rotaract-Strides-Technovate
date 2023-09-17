@@ -48,17 +48,21 @@ function EventsCard({ event }: { event: any }) {
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
+            {/* {isCheckoutPage ? null : ( */}
             <Link to="/home/eventdetails">
               <button className="rounded-full bg-teal-500 px-4 py-2 font-bold text-white hover:bg-teal-600" onClick={handleSee}>
                 See More
               </button>
               </Link>
+            {/* )} */}
             </div>
+            {/* {isCheckoutPage ? null : ( */}
             <Link to="/home/user/checkout">
               <button className="rounded-full bg-teal-500 px-4 py-2 font-bold text-white hover:bg-teal-600" onClick={handleRegisterClick}>
                 Register
               </button>
             </Link>
+            {/* )} */}
           </div>
         </div>
       </div>
