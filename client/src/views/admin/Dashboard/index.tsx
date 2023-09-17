@@ -27,7 +27,7 @@ const Dashboard: React.FC = () => {
 
   const fetchData = async () => {
     const res = await axios.post(`${BACKEND_URL}/events/getByClub`, {
-      club: member.club ? member.club : "RC-SPIT",
+      club: member?.club ? member.club : "RC-SPIT",
     });
     setEventList(res.data);
   };
