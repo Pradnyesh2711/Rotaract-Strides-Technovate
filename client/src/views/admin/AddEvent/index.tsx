@@ -30,6 +30,7 @@ function formReducer(state: any, action: any) {
 const CreateEvent = () => {
   const [state, dispatch] = useReducer(formReducer, initialState);
   const [errorField, setErrorField] = useState("");
+  const [image, setImage] = useState<File | null>(null);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -165,7 +166,7 @@ const CreateEvent = () => {
               />
             </div>
             <div className="flex">
-              <Upload/>
+              <Upload setImage={setImage} />
             </div>
             <div className="text-center">
               <button

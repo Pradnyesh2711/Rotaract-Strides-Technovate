@@ -1,13 +1,24 @@
 import { MdFileUpload } from "react-icons/md";
 import Card from "components/card";
-import { useRef } from "react";
+import { ChangeEvent, useRef } from "react";
 
-const Upload = () => {
-    const fileInputRef = useRef(null);
+interface UploadProps {
+  setImage: (file: File | null) => void;
+}
+
+const Upload: React.FC<UploadProps> = ({ setImage }) => {
+  const fileInputRef = useRef(null);
+  const handleFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0]; // Get the first selected file
+    setImage(selectedFile); // Call the setImage prop to set the selected image
+  };
   return (
-    <Card className="h-full w-full rounded-[20px] bg-white bg-clip-border p-3 mb-3 font-dm shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:shadow-none 2xl:grid-cols-11">
+    <Card className="mb-3 h-full w-full rounded-[20px] bg-white bg-clip-border p-3 font-dm shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:shadow-none 2xl:grid-cols-11">
       <div className="col-span-5 h-full w-full rounded-xl bg-lightPrimary dark:!bg-navy-700 2xl:col-span-6">
-        <button onClick={() => fileInputRef.current.click()} className="flex bg-blue-300 h-full w-full flex-col items-center justify-center rounded-xl border-[2px] border-dashed border-gray-200 py-1 dark:!border-navy-700 lg:pb-0">
+        <button
+          onClick={() => fileInputRef.current?.click()}
+          className="flex h-full w-full flex-col items-center justify-center rounded-xl border-[2px] border-dashed border-gray-200 bg-blue-300 py-1 dark:!border-navy-700 lg:pb-0"
+        >
           <MdFileUpload className="text-[30px] text-brand-500 dark:text-white" />
           <h4 className="text-lg font-bold text-brand-500 dark:text-white">
             Upload Files
@@ -16,7 +27,15 @@ const Upload = () => {
             PNG, JPG and GIF files are allowed
           </p>
         </button>
-        <input ref={fileInputRef} type="file" name="coverImage" id="coverImage" accept=".png, .jpeg, .jpg multiple" className="hidden"/>
+        <input
+          ref={fileInputRef}
+          type="file"
+          name="coverImage"
+          id="coverImage"
+          accept=".png, .jpeg, .jpg multiple"
+          className="hidden"
+          onChange={handleFileInputChange}
+        />
       </div>
     </Card>
   );

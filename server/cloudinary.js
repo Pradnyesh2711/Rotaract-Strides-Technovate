@@ -1,10 +1,10 @@
-const cloudinary=require('cloudinary').v2;
+const cloudinary = require("cloudinary").v2;
 cloudinary.config({
-cloud_name:'dvxacup6m',
-api_key:'995456639814318',
-api_secret:'Jg1ZUDlOfOKBU5oMb2PHcpPbYQY',
+  cloud_name: "dvxacup6m",
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 
-secure:true
-})
+  secure: true,
+});
 
 export default cloudinary;

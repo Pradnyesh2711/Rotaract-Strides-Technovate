@@ -35,7 +35,7 @@ const Sidebar = (props: {
           </div>
           <p> Rotaract Strides </p>
           <p className="text-sm font-medium">
-            {member?.club === "" ? "(RC-SPIT)" : `(${member?.club})`}
+            {member?.club === undefined ? "(RC-SPIT)" : `(${member?.club})`}
           </p>
         </div>
       </div>
